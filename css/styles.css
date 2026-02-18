@@ -25,7 +25,14 @@
                 padding: 10mm !important;
                 width: 100% !important;
                 background: white !important;
+                
+        
+           -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        
             }
+
+            
             .doc-input { border: none !important; 
                 border-bottom: 1px solid #cbd5e1 !important; 
                 background: transparent !important;
