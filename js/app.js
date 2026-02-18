@@ -1,4 +1,6 @@
-const organizations = [
+/* --- LÓGICA ORIGINAL (app.js) --- */
+        
+        const organizations = [
             { id: 'Obispado', name: 'Obispado', icon: 'shield-check', color: '#002e5d' },
             { id: 'Misional', name: 'Obra Misional', icon: 'send', color: '#3b82f6' },
             { id: 'Templo', name: 'Templo e Historia Familiar', icon: 'sprout', color:'#10b981' },
@@ -36,7 +38,7 @@ const organizations = [
             setupAgenda('Reunión de Obispado', 'Agenda_Obispado');
             const container = document.getElementById('agenda-dynamic-content');
             container.innerHTML = `
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div><span class="doc-label">Primera Oración</span><input type="text" class="doc-input"></div>
                     <div><span class="doc-label">Pensamiento Espiritual</span><input type="text" class="doc-input"></div>
                 </div>
@@ -46,14 +48,14 @@ const organizations = [
                 </div>
                 <div class="space-y-4">
                     <h4 class="text-[10px] font-black uppercase text-slate-400 border-b">Informe de Mayordomías</h4>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div><span class="doc-label">Obispo</span><textarea class="doc-input h-10"></textarea></div>
                         <div><span class="doc-label">1er Consejero</span><textarea class="doc-input h-10"></textarea></div>
                         <div><span class="doc-label">2do Consejero</span><textarea class="doc-input h-10"></textarea></div>
                         <div><span class="doc-label">Secretarios</span><textarea class="doc-input h-10"></textarea></div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="agenda-box"><span class="doc-label">Llamamientos y Relevos</span><textarea class="doc-input h-20"></textarea></div>
                     <div class="agenda-box"><span class="doc-label">Asuntos Administrativos</span><textarea class="doc-input h-20"></textarea></div>
                 </div>
@@ -66,7 +68,7 @@ const organizations = [
             setupAgenda(mode === 'Testimonios' ? 'Reunión de Testimonios' : 'Reunión Sacramental', 'Agenda_Sacramental');
             const container = document.getElementById('agenda-dynamic-content');
             let html = `
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div><span class="doc-label">Preside</span><input type="text" class="doc-input"></div>
                     <div><span class="doc-label">Dirige</span><input type="text" class="doc-input"></div>
                 </div>
@@ -74,7 +76,7 @@ const organizations = [
                     <span class="doc-label text-blue-800">Anuncios de Barrio y Estaca</span>
                     <textarea class="doc-input h-10" placeholder="Lectura de anuncios importantes..."></textarea>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div><span class="doc-label">Himno de Apertura</span><input type="text" class="doc-input"></div>
                     <div><span class="doc-label">Primera Oración</span><input type="text" class="doc-input"></div>
                 </div>
@@ -85,7 +87,7 @@ const organizations = [
                 <div><span class="doc-label">Himno Sacramental</span><input type="text" class="doc-input font-bold text-blue-800"></div>
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
                     <span class="doc-label text-slate-500 mb-2">Servicio de la Santa Cena</span>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <input type="text" class="doc-input" placeholder="Bendicen...">
                         <input type="text" class="doc-input" placeholder="Reparten...">
                     </div>
@@ -96,7 +98,7 @@ const organizations = [
             } else {
                 html += `<div class="agenda-box"><div class="flex justify-between items-center mb-2"><span class="doc-label">Discursos</span><button onclick="addPointToAgenda('dis-list')" class="no-print text-[7px] font-black bg-white px-2 py-1 rounded shadow-sm">+ AGREGAR</button></div><div id="dis-list" class="space-y-2"></div></div>`;
             }
-            html += `<div class="grid grid-cols-2 gap-4 pt-2"><div><span class="doc-label">Himno de Clausura</span><input type="text" class="doc-input"></div><div><span class="doc-label">Última Oración</span><input type="text" class="doc-input"></div></div>`;
+            html += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2"><div><span class="doc-label">Himno de Clausura</span><input type="text" class="doc-input"></div><div><span class="doc-label">Última Oración</span><input type="text" class="doc-input"></div></div>`;
             container.innerHTML = html;
             if(mode !== 'Testimonios') { addPointToAgenda('dis-list'); addPointToAgenda('dis-list'); }
             initIcons();
@@ -106,7 +108,7 @@ const organizations = [
             setupAgenda('Consejo de Barrio', 'Agenda_Consejo_Barrio');
             const container = document.getElementById('agenda-dynamic-content');
             container.innerHTML = `
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div><span class="doc-label">Dirige</span><input type="text" class="doc-input"></div>
                     <div><span class="doc-label">Primera Oración</span><input type="text" class="doc-input"></div>
                 </div>
@@ -132,16 +134,16 @@ const organizations = [
             setupAgenda('Servicio Bautismal', 'Agenda_Bautismo');
             const container = document.getElementById('agenda-dynamic-content');
             container.innerHTML = `
-                <div class="grid grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div><span class="doc-label">Nombre del Candidato</span><input type="text" class="doc-input font-bold text-cyan-800"></div>
                     <div><span class="doc-label">Fecha y Hora</span><input type="text" class="doc-input" placeholder="Sábado 16:00"></div>
                 </div>
                 <div class="space-y-3">
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div><span class="doc-label">Dirige</span><input type="text" class="doc-input"></div>
                         <div><span class="doc-label">Música (Pianista/Director)</span><input type="text" class="doc-input"></div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div><span class="doc-label">Himno de Apertura</span><input type="text" class="doc-input"></div>
                         <div><span class="doc-label">Primera Oración</span><input type="text" class="doc-input"></div>
                     </div>
@@ -154,7 +156,7 @@ const organizations = [
                         <div class="flex gap-2"><span class="text-[9px] font-bold w-32 uppercase text-slate-400">Mensaje (Esp. Santo)</span><input type="text" class="doc-input flex-1"></div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div><span class="doc-label">Himno de Clausura</span><input type="text" class="doc-input"></div>
                     <div><span class="doc-label">Última Oración</span><input type="text" class="doc-input"></div>
                 </div>
@@ -169,7 +171,7 @@ const organizations = [
             setupAgenda('Agenda: ' + type, 'Agenda_Generic');
             const container = document.getElementById('agenda-dynamic-content');
             container.innerHTML = `
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div><span class="doc-label">Lugar / Plataforma</span><input type="text" class="doc-input" placeholder="Capilla / Zoom"></div>
                     <div><span class="doc-label">Hora</span><input type="time" class="doc-input"></div>
                 </div>
@@ -188,7 +190,7 @@ const organizations = [
             const list = document.getElementById(listId);
             if(!list) return;
             const div = document.createElement('div');
-            div.className = "flex gap-2 group items-center";
+            div.className = "flex gap-2 group items-center mb-1";
             div.innerHTML = `<i data-lucide="circle" class="w-2 h-2 text-slate-300"></i><input type="text" class="doc-input flex-1" placeholder="Detalle..."><button onclick="this.closest('.group').remove()" class="no-print remove-btn text-red-300"><i data-lucide="x" class="w-3 h-3"></i></button>`;
             list.appendChild(div);
             initIcons();
@@ -234,8 +236,8 @@ const organizations = [
         function addGoalField(val = "") {
             const container = document.getElementById('org-goals-container');
             const div = document.createElement('div');
-            div.className = "group flex items-start space-x-2";
-            div.innerHTML = `<i data-lucide="circle" class="w-2 h-2 mt-2 text-slate-300"></i><textarea class="doc-input text-[11px] italic flex-1 p-0 border-none h-6 focus:ring-0 resize-none" placeholder="Escriba meta...">${val}</textarea><button onclick="this.parentElement.remove()" class="no-print remove-btn text-red-300"><i data-lucide="trash-2" class="w-3 h-3"></i></button>`;
+            div.className = "group flex items-start space-x-2 mb-1";
+            div.innerHTML = `<i data-lucide="circle" class="w-2 h-2 mt-2 text-slate-300"></i><textarea class="doc-input text-[11px] italic flex-1 p-1 h-8 resize-none" placeholder="Escriba meta...">${val}</textarea><button onclick="this.parentElement.remove()" class="no-print remove-btn text-red-300"><i data-lucide="trash-2" class="w-3 h-3"></i></button>`;
             container.appendChild(div);
             initIcons();
         }
@@ -243,8 +245,8 @@ const organizations = [
         function addIndicatorField(label = "Indicador", val = "0%") {
             const container = document.getElementById('org-indicators-container');
             const div = document.createElement('div');
-            div.className = "group flex justify-between items-center";
-            div.innerHTML = `<input type="text" class="text-[9px] font-bold uppercase text-slate-500 bg-transparent border-none p-0 w-full" value="${label}"><input type="text" class="w-12 text-right font-black text-[11px] bg-transparent border-b border-slate-200" value="${val}"><button onclick="this.parentElement.remove()" class="no-print remove-btn text-red-300 ml-2"><i data-lucide="x" class="w-3 h-3"></i></button>`;
+            div.className = "group flex justify-between items-center gap-2 mb-1";
+            div.innerHTML = `<input type="text" class="text-[9px] font-bold uppercase text-slate-500 bg-transparent border-none p-0 w-full" value="${label}"><input type="text" class="w-12 text-right font-black text-[11px] doc-input p-1" value="${val}"><button onclick="this.parentElement.remove()" class="no-print remove-btn text-red-300"><i data-lucide="x" class="w-3 h-3"></i></button>`;
             container.appendChild(div);
             initIcons();
         }
@@ -252,8 +254,17 @@ const organizations = [
         function addCalItem(trimId) {
             const list = document.getElementById(`list-${trimId}`);
             const div = document.createElement('div');
-            div.className = "group flex gap-2 items-center";
-            div.innerHTML = `<input type="text" placeholder="Día" class="w-10 text-[9px] font-bold border-none bg-white rounded p-1"><input type="text" placeholder="Actividad..." class="flex-1 text-[9px] border-none bg-white rounded p-1"><button onclick="this.parentElement.remove()" class="no-print remove-btn text-red-300"><i data-lucide="x" class="w-3 h-3"></i></button>`;
+            div.className = "group flex gap-2 items-center mb-1";
+            /* MODIFICACIÓN SOLICITADA:
+               Se han cambiado los inputs. Antes había uno para 'Día', ahora hay dos: 'Día' y 'Mes'.
+               Se usa la clase 'cal-input' para que tenga borde visible y fondo blanco.
+            */
+            div.innerHTML = `
+                <input type="text" placeholder="Día" class="w-8 text-[9px] font-bold text-center cal-input">
+                <input type="text" placeholder="Mes" class="w-8 text-[9px] font-bold text-center cal-input">
+                <input type="text" placeholder="Actividad..." class="flex-1 text-[9px] cal-input">
+                <button onclick="this.parentElement.remove()" class="no-print remove-btn text-red-300"><i data-lucide="x" class="w-3 h-3"></i></button>
+            `;
             list.appendChild(div);
             initIcons();
         }
@@ -261,7 +272,7 @@ const organizations = [
         function addRow() {
             const tr = document.createElement('tr');
             tr.className = "group border-b border-slate-50";
-            tr.innerHTML = `<td class="py-2"><input type="text" class="w-full text-xs border-none bg-transparent"></td><td class="py-2"><input type="number" class="qty w-full text-right text-xs border-none bg-transparent" oninput="calculateBudget(true)"></td><td class="py-2"><input type="number" step="0.01" class="price w-full text-right text-xs border-none font-bold bg-transparent" oninput="calculateBudget(true)"></td><td class="py-2 text-right font-black text-xs text-slate-400"><span class="subtotal"></span></td><td class="py-2 no-print text-center"><button onclick="this.closest('tr').remove(); calculateBudget(true)" class="remove-btn text-red-400"><i data-lucide="x" class="w-3 h-3"></i></button></td>`;
+            tr.innerHTML = `<td class="py-1"><input type="text" class="doc-input w-full text-xs"></td><td class="py-1"><input type="number" class="qty doc-input w-full text-right text-xs" oninput="calculateBudget(true)"></td><td class="py-1"><input type="number" step="0.01" class="price doc-input w-full text-right text-xs font-bold" oninput="calculateBudget(true)"></td><td class="py-1 text-right font-black text-xs text-slate-400"><span class="subtotal"></span></td><td class="py-1 no-print text-center"><button onclick="this.closest('tr').remove(); calculateBudget(true)" class="remove-btn text-red-400"><i data-lucide="x" class="w-3 h-3"></i></button></td>`;
             document.getElementById('budget-body').appendChild(tr);
             initIcons();
         }
