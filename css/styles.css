@@ -131,23 +131,25 @@
             border: 1px solid #f1f5f9;
         }
 
-        /* Clase añadida para manejo de tablas responsivas */
+/* Clase añadida para manejo de tablas responsivas */
         .mobile-table-scroll {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             width: 100%;
             margin-bottom: 1rem;
         }
-
-        /* Clase añadida para manejo de tablas responsivas */
-        .mobile-table-scroll {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            width: 100%;
-            margin-bottom: 1rem;
+        
+        /* Estilos específicos para inputs de tabla/calendario para que coincidan */
+        .cal-input {
+            border: 1px solid #cbd5e1;
+            background-color: white;
+            border-radius: 0.25rem;
+            padding: 2px 4px;
+            font-size: 9px;
         }
-
-                .cal-input:focus {
+        .cal-input:focus {
             outline: none;
             border-color: var(--accent);
         }
+
+        
