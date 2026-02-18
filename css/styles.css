@@ -25,14 +25,7 @@
                 padding: 10mm !important;
                 width: 100% !important;
                 background: white !important;
-                
-        
-           -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        
             }
-
-            
             .doc-input { border: none !important; 
                 border-bottom: 1px solid #cbd5e1 !important; 
                 background: transparent !important;
@@ -138,25 +131,36 @@
             border: 1px solid #f1f5f9;
         }
 
-/* Clase añadida para manejo de tablas responsivas */
+        /* Clase añadida para manejo de tablas responsivas */
         .mobile-table-scroll {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             width: 100%;
             margin-bottom: 1rem;
         }
-        
-        /* Estilos específicos para inputs de tabla/calendario para que coincidan */
-        .cal-input {
-            border: 1px solid #cbd5e1;
-            background-color: white;
-            border-radius: 0.25rem;
-            padding: 2px 4px;
-            font-size: 9px;
-        }
-        .cal-input:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
 
-        
+        /* Clase añadida para manejo de tablas responsivas */
+        .mobile-table-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+/* ====== PDF MODE (DESKTOP FORZADO) ====== */
+.pdf-export {
+    width: 850px !important;
+    max-width: 850px !important;
+}
+
+.pdf-export .md\:grid-cols-2,
+.pdf-export .md\:grid-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.pdf-export .md\:flex-row {
+    flex-direction: row !important;
+}
+
+.pdf-export .md\:text-right {
+    text-align: right !important;
+}

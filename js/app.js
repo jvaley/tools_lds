@@ -297,31 +297,43 @@ function calculateBudget(autoUpdateBudgetRecieved = true) {
 
 function exportToPDF(id, name) {
     const element = document.getElementById(id);
-    
-    // 1. Guardar el estilo original
-    const originalStyle = element.style.width;
-    
-    // 2. Forzar ancho de escritorio para la captura (A4 aprox 800px)
-    element.style.width = "850px"; 
 
-    const opt = { 
-        margin: 10, // Un pequeño margen suele ayudar en móviles
-        filename: `${name}.pdf`, 
+    // Guardar estado
+    const originalWidth = element.style.width;
+
+    // Activar modo PDF
+    element.classList.add('pdf-export');
+    element.style.width = '850px';
+
+    const opt = {
+        margin: [10, 10, 10, 10],
+        filename: `${name}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-            scale: 2, 
-            useCORS: true, 
-            letterRendering: true,
-            width: 850 // Forzar a html2canvas a leer este ancho
-        }, 
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
+        html2canvas: {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: '#ffffff',
+            //windowWidth: 1200,   // 🔥 CLAVE
+            width: 850
+        },
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'portrait'
+        }
     };
 
-    // 3. Ejecutar la exportación y restaurar el estilo al terminar
-    html2pdf().set(opt).from(element).save().then(() => {
-        element.style.width = originalStyle;
-    });
+    html2pdf()
+        .set(opt)
+        .from(element)
+        .save()
+        .then(() => {
+            // Restaurar estado
+            element.classList.remove('pdf-export');
+            element.style.width = originalWidth;
+        });
 }
+
         
     window.onload = () => {
         for (let i = 0; i < 8; i++) addRow();
