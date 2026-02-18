@@ -1,151 +1,179 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        :root {
-            --primary: #002e5d;
-            --primary-light: #f1f5f9;
-            --accent: #3b82f6;
-            --org-color: #002e5d;
-            --plan-green: #064e3b;
-        }
 
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f8fafc;
-            color: #1e293b;
-            -webkit-tap-highlight-color: transparent;
-        }
+:root {
+    --primary: #002e5d;
+    --primary-light: #f1f5f9;
+    --accent: #3b82f6;
+    --org-color: #002e5d;
+    --plan-green: #064e3b;
+}
 
-        @media print {
-            .no-print { display: none !important; }
-            body { background-color: white !important; }
-            .print-container { 
-                box-shadow: none !important; 
-                border: none !important; 
-                margin: 0 !important;
-                padding: 10mm !important;
-                width: 100% !important;
-                background: white !important;
-            }
-            .doc-input { border: none !important; 
-                border-bottom: 1px solid #cbd5e1 !important; 
-                background: transparent !important;
-                box-shadow: none !important;
-                padding: 0 !important;
-                border-radius: 0 !important; }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    -webkit-tap-highlight-color: transparent;
+}
 
-            textarea { border: none !important; resize: none !important;}
+@media print {
+    .no-print {
+        display: none !important;
+    }
 
-            /* Ajustes específicos para inputs de calendario al imprimir */
-            .cal-input {
-                border: none !important;
-                background: transparent !important;
-                padding: 0 !important;
-            }
-        }
+    body {
+        background-color: white !important;
+    }
 
-        .app-container {
-            width: 100%;
-            max-width: 850px;
-            margin: 0 auto;
-        }
+    .print-container {
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 10mm !important;
+        width: 100% !important;
+        background: white !important;
+    }
 
-        .glass-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-        }
+    .doc-input {
+        border: none !important;
+        border-bottom: 1px solid #cbd5e1 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+    }
 
-        .doc-input {
-            border: 1px solid #cbd5e1; /* Borde visible completo */
-            background-color: #ffffff; /* Fondo blanco */
-            border-radius: 0.375rem;   /* Bordes redondeados */
-            padding: 0.4rem 0.6rem;    /* Espaciado interno */
-            font-size: 0.85rem;
-            font-weight: 500;
-            width: 100%;
-            transition: all 0.2s;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Sombra sutil */
-        }
+    textarea {
+        border: none !important;
+        resize: none !important;
+    }
 
-        .doc-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); /* Resplandor al seleccionar */
-        }
+    /* Ajustes específicos para inputs de calendario al imprimir */
+    .cal-input {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+}
 
-        .doc-label {
-            font-size: 0.65rem;
-            font-weight: 800;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: block;
-            margin-bottom: 4px;
-        }
+.app-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
 
-        .btn-base {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.6rem 1rem;
-            border-radius: 0.75rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.025em;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
+.glass-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+}
 
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-ghost { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+.doc-input {
+    border: 1px solid #cbd5e1;
+    /* Borde visible completo */
+    background-color: #ffffff;
+    /* Fondo blanco */
+    border-radius: 0.375rem;
+    /* Bordes redondeados */
+    padding: 0.4rem 0.6rem;
+    /* Espaciado interno */
+    font-size: 0.85rem;
+    font-weight: 500;
+    width: 100%;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    /* Sombra sutil */
+}
 
-        .sig-box {
-            border-top: 1px solid #cbd5e1;
-            padding-top: 0.5rem;
-            text-align: center;
-            font-size: 0.6rem;
-            font-weight: 800;
-            color: #64748b;
-            text-transform: uppercase;
-        }
+.doc-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    /* Resplandor al seleccionar */
+}
 
-        .remove-btn {
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-        .group:hover .remove-btn {
-            opacity: 1;
-        }
+.doc-label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 4px;
+}
 
-        .plan-header {
-            background-color: var(--org-color);
-            transition: background-color 0.4s ease;
-        }
+.btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    transition: all 0.2s;
+    cursor: pointer;
+}
 
-        .agenda-box {
-            background-color: #f8fafc;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            border: 1px solid #f1f5f9;
-        }
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
 
-        /* Clase añadida para manejo de tablas responsivas */
-        .mobile-table-scroll {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
+.btn-ghost {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
 
-        /* Clase añadida para manejo de tablas responsivas */
-        .mobile-table-scroll {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
+.sig-box {
+    border-top: 1px solid #cbd5e1;
+    padding-top: 0.5rem;
+    text-align: center;
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.remove-btn {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.group:hover .remove-btn {
+    opacity: 1;
+}
+
+.plan-header {
+    background-color: var(--org-color);
+    transition: background-color 0.4s ease;
+}
+
+.agenda-box {
+    background-color: #f8fafc;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #f1f5f9;
+}
+
+/* Clase añadida para manejo de tablas responsivas */
+.mobile-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Clase añadida para manejo de tablas responsivas */
+.mobile-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
 /* ====== PDF MODE (DESKTOP FORZADO) ====== */
 .pdf-export {
     width: 850px !important;
