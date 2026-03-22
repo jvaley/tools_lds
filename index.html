@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -9,13 +10,14 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body class="pb-20">
 
     <nav class="bg-[#002e5d] text-white sticky top-0 z-50 no-print shadow-md">
         <div class="max-w-4xl mx-auto px-4 h-16 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <i data-lucide="key" class="w-5 h-5 text-blue-300"></i>
-                <span class="font-black text-sm tracking-tighter uppercase">Herramientas SUD P</span>
+                <span class="font-black text-sm tracking-tighter uppercase">Herramientas SUD</span>
             </div>
             <button onclick="showMenu()" class="btn-base bg-white/10 hover:bg-white/20 px-4">
                 <i data-lucide="layout-grid" class="w-4 h-4 mr-2"></i> Inicio
@@ -24,25 +26,31 @@
     </nav>
 
     <main class="app-container p-4 md:pt-10">
-        
+
         <!-- MENÚ PRINCIPAL -->
         <div id="main-menu" class="space-y-6">
             <header class="text-center space-y-2 mb-10">
                 <h1 class="text-3xl font-black text-slate-800 tracking-tighter uppercase">Panel de Control</h1>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">Menos gestión, más servicio.</p>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">Menos gestión, más servicio.
+                </p>
             </header>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div onclick="openTool('presupuesto-tool')" class="glass-card p-6 cursor-pointer hover:border-emerald-400 transition-all">
-                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4">
+                <div onclick="openTool('presupuesto-tool')"
+                    class="glass-card p-6 cursor-pointer hover:border-emerald-400 transition-all">
+                    <div
+                        class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4">
                         <i data-lucide="wallet"></i>
                     </div>
                     <h3 class="font-black uppercase text-sm mb-1">Presupuesto de Actividades</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Liquidación de gastos y control de fondos de actividad.</p>
+                    <p class="text-xs text-slate-500 leading-relaxed">Liquidación de gastos y control de fondos de
+                        actividad.</p>
                 </div>
 
-                <div onclick="openTool('planificador-tool')" class="glass-card p-6 cursor-pointer hover:border-emerald-400 transition-all">
-                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4">
+                <div onclick="openTool('planificador-tool')"
+                    class="glass-card p-6 cursor-pointer hover:border-emerald-400 transition-all">
+                    <div
+                        class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4">
                         <i data-lucide="calendar-range"></i>
                     </div>
                     <h3 class="font-black uppercase text-sm mb-1">Plan de Actividades</h3>
@@ -53,31 +61,38 @@
             <div class="pt-4">
                 <div class="flex items-center space-x-2 mb-4">
                     <span class="h-px flex-1 bg-slate-200"></span>
-                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Agendas de Reunión</span>
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Agendas de
+                        Reunión</span>
                     <span class="h-px flex-1 bg-slate-200"></span>
                 </div>
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                    <button onclick="openSacramentalAgenda('Normal')" class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                    <button onclick="openSacramentalAgenda('Normal')"
+                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="mic" class="w-5 h-5 text-blue-600"></i>
                         <span>Sacramental</span>
                     </button>
-                    <button onclick="openSacramentalAgenda('Testimonios')" class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                    <button onclick="openSacramentalAgenda('Testimonios')"
+                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="heart" class="w-5 h-5 text-rose-600"></i>
                         <span>Testimonios</span>
                     </button>
-                    <button onclick="openObispadoAgenda()" class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                    <button onclick="openObispadoAgenda()"
+                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="shield" class="w-5 h-5 text-slate-700"></i>
                         <span>Obispado</span>
                     </button>
-                    <button onclick="openCouncilAgenda()" class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                    <button onclick="openCouncilAgenda()"
+                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="users" class="w-5 h-5 text-emerald-700"></i>
                         <span>Consejo Barrio</span>
                     </button>
-                    <button onclick="openBaptismAgenda()" class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                    <button onclick="openBaptismAgenda()"
+                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="droplets" class="w-5 h-5 text-cyan-600"></i>
                         <span>Bautismo</span>
                     </button>
-                    <button onclick="openGenericAgenda('Otras')" class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                    <button onclick="openGenericAgenda('Otras')"
+                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="file-text" class="w-5 h-5 text-slate-400"></i>
                         <span>Genérica</span>
                     </button>
@@ -88,30 +103,35 @@
         <!-- MÓDULO: LIQUIDACIÓN -->
         <div id="presupuesto-tool" class="hidden">
             <div class="no-print flex justify-between mb-4">
-                <button onclick="showMenu()" class="btn-base btn-ghost"><i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> Volver</button>
+                <button onclick="showMenu()" class="btn-base btn-ghost"><i data-lucide="chevron-left"
+                        class="w-4 h-4 mr-1"></i> Volver</button>
                 <div class="flex space-x-2">
-                    <button onclick="exportToPDF('budget-print', 'Liquidacion_Gastos')" class="btn-base btn-primary"><i data-lucide="download" class="w-4 h-4 mr-2"></i> PDF</button>
+                    <button onclick="exportToPDF('budget-print', 'Liquidacion_Gastos')" class="btn-base btn-primary"><i
+                            data-lucide="download" class="w-4 h-4 mr-2"></i> PDF</button>
                 </div>
             </div>
-            
+
             <div id="budget-print" class="glass-card print-container p-4 md:p-8">
                 <div class="flex flex-col md:flex-row justify-between items-start mb-6 gap-4">
                     <div>
                         <h2 class="text-xl font-black uppercase tracking-tight text-blue-900">Presupuesto</h2>
-                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Información Financiera de Actividad</p>
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Información Financiera
+                            de Actividad</p>
                     </div>
-                    <div class="space-y-6">   
-                    <div class="text-left md:text-right w-full md:w-auto">
-                        <span class="doc-label">Fecha de Actividad</span>
-                        <input type="date" class="doc-input text-left md:text-right w-full md:w-32 font-bold">
-                    </div>
+                    <div class="space-y-6">
+                        <div class="text-left md:text-right w-full md:w-auto">
+                            <span class="doc-label">Fecha de Actividad</span>
+                            <input type="date" class="doc-input text-left md:text-right w-full md:w-32 font-bold">
+                        </div>
                     </div>
                 </div>
-                
+
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div><span class="doc-label">Nombre de Actividad</span><input type="text" class="doc-input"></div>
-                        <div><span class="doc-label">Organización Solicitante</span><input type="text" class="doc-input"></div>
+                        <div><span class="doc-label">Nombre de Actividad</span><input type="text" class="doc-input">
+                        </div>
+                        <div><span class="doc-label">Organización Solicitante</span><input type="text"
+                                class="doc-input"></div>
                     </div>
 
                     <!-- WRAPPER RESPONSIVO PARA LA TABLA -->
@@ -129,7 +149,7 @@
                             <tbody id="budget-body"></tbody>
                         </table>
                     </div>
-                    
+
                     <button onclick="addRow()" class="no-print btn-base btn-ghost w-full py-2 border-dashed">
                         <i data-lucide="plus" class="w-3 h-3 mr-2"></i> Añadir Concepto
                     </button>
@@ -137,7 +157,9 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
                         <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
                             <span class="doc-label">Observaciones y Justificación</span>
-                            <textarea class="w-full bg-white border border-slate-200 rounded p-2 text-xs focus:ring-0 resize-none" rows="3"></textarea>
+                            <textarea
+                                class="w-full bg-white border border-slate-200 rounded p-2 text-xs focus:ring-0 resize-none"
+                                rows="3"></textarea>
                         </div>
                         <div class="space-y-4">
                             <div class="bg-white border border-slate-200 rounded-xl p-4 space-y-3 shadow-sm">
@@ -145,14 +167,18 @@
                                     <span class="text-[9px] font-black uppercase text-slate-500">Monto Recibido</span>
                                     <div class="flex items-center space-x-1 font-black text-slate-800">
                                         <span>Q</span>
-                                        <input type="number" id="budget-received-total-input" class="w-24 doc-input text-right font-black p-1" oninput="calculateBudget(false)">
+                                        <input type="number" id="budget-received-total-input"
+                                            class="w-24 doc-input text-right font-black p-1"
+                                            oninput="calculateBudget(false)">
                                     </div>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-[9px] font-black uppercase text-blue-700">Gasto Ejecutado</span>
                                     <div class="flex items-center space-x-1 font-black text-blue-900">
                                         <span>Q</span>
-                                        <input type="number" id="actual-spent-input" class="w-24 doc-input text-right font-black p-1" oninput="calculateBudget(true)">
+                                        <input type="number" id="actual-spent-input"
+                                            class="w-24 doc-input text-right font-black p-1"
+                                            oninput="calculateBudget(true)">
                                     </div>
                                 </div>
                                 <div class="h-px bg-slate-100"></div>
@@ -160,7 +186,8 @@
                                     <span class="text-[9px] font-black uppercase text-emerald-600">Sobrante</span>
                                     <div class="flex items-center space-x-1 font-black text-emerald-600">
                                         <span>Q</span>
-                                        <input type="number" id="total-surplus-input" class="w-24 doc-input text-right font-black p-1" readonly>
+                                        <input type="number" id="total-surplus-input"
+                                            class="w-24 doc-input text-right font-black p-1" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -179,21 +206,26 @@
         <!-- MÓDULO: PLANIFICADOR -->
         <div id="planificador-tool" class="hidden">
             <div class="no-print flex justify-between items-center mb-4 space-x-2">
-                <button onclick="showMenu()" class="btn-base btn-ghost shrink-0"><i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i></button>
+                <button onclick="showMenu()" class="btn-base btn-ghost shrink-0"><i data-lucide="chevron-left"
+                        class="w-4 h-4 mr-1"></i></button>
                 <div class="flex-1 flex space-x-2">
-                    <select id="org-combo-box" onchange="switchOrg(this.value)" class="text-xs font-black uppercase bg-white border border-slate-300 rounded-lg px-3 py-2 outline-none flex-1"></select>
+                    <select id="org-combo-box" onchange="switchOrg(this.value)"
+                        class="text-xs font-black uppercase bg-white border border-slate-300 rounded-lg px-3 py-2 outline-none flex-1"></select>
                 </div>
-                <button onclick="exportToPDF('plan-print-area', 'Plan_Estrategico')" class="btn-base btn-primary"><i data-lucide="download" class="w-4 h-4 mr-2"></i>PDF</button>
+                <button onclick="exportToPDF('plan-print-area', 'Plan_Estrategico')" class="btn-base btn-primary"><i
+                        data-lucide="download" class="w-4 h-4 mr-2"></i>PDF</button>
             </div>
-            
+
             <div id="plan-print-area" class="glass-card print-container overflow-hidden">
                 <div id="org-header-bg" class="plan-header p-6 text-white rounded-t-xl mb-8">
                     <div class="flex items-center space-x-4">
-                        <div id="org-icon-frame" class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                        <div id="org-icon-frame"
+                            class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
                             <i data-lucide="target" class="w-5 h-5"></i>
                         </div>
                         <div>
-                            <p class="text-[8px] font-black uppercase tracking-widest text-white/70">Plan Estratégico Anual</p>
+                            <p class="text-[8px] font-black uppercase tracking-widest text-white/70">Plan Estratégico
+                                Anual</p>
                             <h2 id="display-org-name" class="text-xl font-black uppercase">Nombre Organización</h2>
                         </div>
                     </div>
@@ -202,23 +234,29 @@
                 <div class="p-6 pt-0 space-y-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <h3 class="text-[9px] font-black uppercase text-slate-400 border-l-4 border-slate-300 pl-3 mb-4">Metas</h3>
+                            <h3
+                                class="text-[9px] font-black uppercase text-slate-400 border-l-4 border-slate-300 pl-3 mb-4">
+                                Metas</h3>
                             <div id="org-goals-container" class="space-y-3"></div>
-                            <button onclick="addGoalField()" class="no-print mt-3 text-[9px] font-bold text-blue-500 flex items-center">
+                            <button onclick="addGoalField()"
+                                class="no-print mt-3 text-[9px] font-bold text-blue-500 flex items-center">
                                 <i data-lucide="plus" class="w-3 h-3 mr-1"></i> Nueva Meta
                             </button>
                         </div>
                         <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
                             <h3 class="text-[9px] font-black uppercase text-slate-400 mb-4">Indicadores</h3>
                             <div id="org-indicators-container" class="space-y-4"></div>
-                            <button onclick="addIndicatorField()" class="no-print mt-3 text-[9px] font-bold text-blue-500 flex items-center">
+                            <button onclick="addIndicatorField()"
+                                class="no-print mt-3 text-[9px] font-bold text-blue-500 flex items-center">
                                 <i data-lucide="plus" class="w-3 h-3 mr-1"></i> Nuevo Indicador
                             </button>
                         </div>
                     </div>
 
                     <div>
-                        <h3 class="text-[9px] font-black uppercase text-slate-400 border-l-4 border-slate-300 pl-3 mb-6">Calendario Maestro de Actividades</h3>
+                        <h3
+                            class="text-[9px] font-black uppercase text-slate-400 border-l-4 border-slate-300 pl-3 mb-6">
+                            Calendario Maestro de Actividades</h3>
                         <div id="org-calendar-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
                     </div>
                 </div>
@@ -228,21 +266,24 @@
         <!-- MÓDULO: AGENDAS (UNIFICADO DINÁMICO) -->
         <div id="agenda-tool" class="hidden">
             <div class="no-print flex justify-between mb-4">
-                <button onclick="showMenu()" class="btn-base btn-ghost"><i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> Volver</button>
+                <button onclick="showMenu()" class="btn-base btn-ghost"><i data-lucide="chevron-left"
+                        class="w-4 h-4 mr-1"></i> Volver</button>
                 <button id="agenda-pdf-btn" class="btn-base btn-primary">Descargar PDF</button>
             </div>
-            <div id="agenda-print-area" class="glass-card print-container p-6 md:p-10"> 
+            <div id="agenda-print-area" class="glass-card print-container p-6 md:p-10">
                 <div id="agenda-header" class="border-b-2 border-slate-100 pb-4 mb-6">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                         <div class="flex-1">
-                            <h2 id="agenda-title-display" class="text-xl font-black text-blue-900 uppercase leading-tight">Título Agenda</h2>
-                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Barrio Milagro • Estaca Guatemala</p>
+                            <h2 id="agenda-title-display"
+                                class="text-xl font-black text-blue-900 uppercase leading-tight">Título Agenda</h2>
+                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Barrio
+                                Milagro • Estaca Guatemala</p>
                         </div>
                         <div class="space-y-6">
-                        <div class="text-left md:text-right w-full md:w-auto">
-                            <span class="doc-label">Fecha</span>
-                            <input type="date" class="doc-input w-full md:w-32 font-bold text-left md:text-right">
-                        </div>
+                            <div class="text-left md:text-right w-full md:w-auto">
+                                <span class="doc-label">Fecha</span>
+                                <input type="date" class="doc-input w-full md:w-32 font-bold text-left md:text-right">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -251,6 +292,7 @@
         </div>
     </main>
     <script src="js/app.js"></script>
-    
+
 </body>
+
 </html>

@@ -7,6 +7,7 @@ const organizations = [
     { id: 'Dominical', name: 'Escuela Dominical', icon: 'book', color: '#f59e0b' },
     { id: 'SocSocorro', name: 'Sociedad de Socorro', icon: 'heart', color: '#be185d' },
     { id: 'Elderes', name: 'Quórum de Élderes', icon: 'briefcase', color: '#1e40af' },
+    { id: 'JAS', name: 'Jovenes Adultos Solteros', icon: 'zap', color: '#565656ff' },
     { id: 'MujeresJovenes', name: 'Mujeres Jóvenes', icon: 'flower', color: '#7c3aed' },
     { id: 'HombresJovenes', name: 'Sacerdocio Aarónico', icon: 'award', color: '#047857' },
     { id: 'Primaria', name: 'Primaria', icon: 'smile', color: '#b45309' }
@@ -290,9 +291,16 @@ function calculateBudget(autoUpdateBudgetRecieved = true) {
     const spentInput = document.getElementById('actual-spent-input');
     const surplusInput = document.getElementById('total-surplus-input');
     if (autoUpdateBudgetRecieved && tableTotal > 0) budgetInput.value = tableTotal.toFixed(2);
+
     const currentBudget = parseFloat(budgetInput.value) || 0;
-    const currentSpent = parseFloat(spentInput.value) || 0;
-    surplusInput.value = (currentBudget - currentSpent).toFixed(2);
+
+    // Solo calcular si hay un valor ingresado en Gasto Ejecutado
+    if (spentInput.value.trim() !== "") {
+        const currentSpent = parseFloat(spentInput.value) || 0;
+        surplusInput.value = (currentBudget - currentSpent).toFixed(2);
+    } else {
+        surplusInput.value = "";
+    }
 }
 
 function exportToPDF(id, name) {
@@ -334,8 +342,8 @@ function exportToPDF(id, name) {
         });
 }
 
-        
-    window.onload = () => {
-        for (let i = 0; i < 8; i++) addRow();
-        showMenu();
-    };
+
+window.onload = () => {
+    for (let i = 0; i < 8; i++) addRow();
+    showMenu();
+};
