@@ -10,7 +10,9 @@ const organizations = [
     { id: 'JAS', name: 'Jovenes Adultos Solteros', icon: 'zap', color: '#565656ff' },
     { id: 'MujeresJovenes', name: 'Mujeres Jóvenes', icon: 'flower', color: '#7c3aed' },
     { id: 'HombresJovenes', name: 'Sacerdocio Aarónico', icon: 'award', color: '#047857' },
-    { id: 'Primaria', name: 'Primaria', icon: 'smile', color: '#b45309' }
+    { id: 'Primaria', name: 'Primaria', icon: 'smile', color: '#b45309' },
+    { id: 'Seminario', name: 'Seminario', icon: 'book-open', color: '#c2410c' },
+    { id: 'Instituto', name: 'Instituto', icon: 'graduation-cap', color: '#4338ca' }
 ];
 
 function initIcons() { lucide.createIcons(); }
@@ -290,16 +292,26 @@ function calculateBudget(autoUpdateBudgetRecieved = true) {
     const budgetInput = document.getElementById('budget-received-total-input');
     const spentInput = document.getElementById('actual-spent-input');
     const surplusInput = document.getElementById('total-surplus-input');
+    const numPersonasInput = document.getElementById('num-personas-input');
+    const costPerPersonDisplay = document.getElementById('cost-per-person');
+
     if (autoUpdateBudgetRecieved && tableTotal > 0) budgetInput.value = tableTotal.toFixed(2);
 
     const currentBudget = parseFloat(budgetInput.value) || 0;
+    const currentSpent = spentInput.value.trim() !== "" ? parseFloat(spentInput.value) : null;
+    const numPersonas = parseFloat(numPersonasInput.value) || 0;
 
     // Solo calcular si hay un valor ingresado en Gasto Ejecutado
-    if (spentInput.value.trim() !== "") {
-        const currentSpent = parseFloat(spentInput.value) || 0;
+    if (currentSpent !== null) {
         surplusInput.value = (currentBudget - currentSpent).toFixed(2);
+        if (numPersonas > 0) {
+            costPerPersonDisplay.innerText = (currentSpent / numPersonas).toFixed(2);
+        } else {
+            costPerPersonDisplay.innerText = "0.00";
+        }
     } else {
         surplusInput.value = "";
+        costPerPersonDisplay.innerText = "0.00";
     }
 }
 
@@ -344,6 +356,16 @@ function exportToPDF(id, name) {
 
 
 window.onload = () => {
+    // Populate Budget Organizations Select
+    const budgetOrgSelect = document.getElementById('budget-org-combo-box');
+    if (budgetOrgSelect) {
+        organizations.forEach(org => {
+            const opt = document.createElement('option');
+            opt.value = org.id; opt.text = org.name;
+            budgetOrgSelect.appendChild(opt);
+        });
+    }
+
     for (let i = 0; i < 8; i++) addRow();
     showMenu();
 };
