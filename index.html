@@ -35,7 +35,7 @@
                 </p>
             </header>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div onclick="openTool('presupuesto-tool')"
                     class="glass-card p-6 cursor-pointer hover:border-emerald-400 transition-all">
                     <div
@@ -55,6 +55,16 @@
                     </div>
                     <h3 class="font-black uppercase text-sm mb-1">Plan de Actividades</h3>
                     <p class="text-xs text-slate-500 leading-relaxed">Metas e indicadores por organización.</p>
+                </div>
+
+                <div onclick="openCallings()"
+                    class="glass-card p-6 cursor-pointer hover:border-blue-400 transition-all">
+                    <div
+                        class="w-12 h-12 bg-blue-50 text-blue-700 rounded-2xl flex items-center justify-center mb-4">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <h3 class="font-black uppercase text-sm mb-1">Guía de Llamamientos</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Obligaciones y responsabilidades según el Manual General.</p>
                 </div>
             </div>
 
@@ -300,6 +310,43 @@
                     </div>
                 </div>
                 <div id="agenda-dynamic-content" class="space-y-6"></div>
+            </div>
+        </div>
+
+        <!-- MÓDULO: LLAMAMIENTOS -->
+        <div id="llamamiento-tool" class="hidden">
+            <!-- Header -->
+            <div class="no-print flex items-center mb-5">
+                <button onclick="showMenu()" class="btn-base btn-ghost mr-auto shrink-0">
+                    <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> Volver
+                </button>
+                <div class="text-center flex-1">
+                    <h2 class="text-sm font-black uppercase text-slate-700 tracking-tight">Guía de Llamamientos</h2>
+                    <p class="text-[9px] text-slate-400 uppercase tracking-widest">Manual General · SUD</p>
+                </div>
+                <div class="w-20 shrink-0"></div>
+            </div>
+
+            <!-- Buscador -->
+            <div class="mb-4 relative">
+                <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
+                <input type="text" id="calling-search" placeholder="Buscar llamamiento u obligación..."
+                    class="doc-input pl-10" oninput="filterCallings(this.value)">
+            </div>
+
+            <!-- Pills de organización -->
+            <div class="calling-pills-scroll mb-5">
+                <div id="calling-org-pills" class="flex gap-2 pb-1"></div>
+            </div>
+
+            <!-- Contenedor de llamamientos -->
+            <div id="callings-container" class="space-y-4"></div>
+
+            <!-- Nota de fuente -->
+            <div class="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                <p class="text-[9px] text-blue-700 font-bold text-center uppercase tracking-wider">
+                    📖 Basado en el Manual General de La Iglesia de Jesucristo de los Santos de los Últimos Días (2020)
+                </p>
             </div>
         </div>
     </main>

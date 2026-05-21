@@ -219,3 +219,63 @@ textarea.w-full.bg-white {
 .pdf-export .md\:text-right {
     text-align: right !important;
 }
+
+/* ====== MÓDULO DE LLAMAMIENTOS ====== */
+
+.calling-pills-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.calling-pills-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.calling-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.calling-pill:hover {
+    border-color: #94a3b8;
+    background: #f1f5f9;
+}
+
+.calling-pill-active {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.calling-item {
+    transition: background-color 0.15s ease;
+    cursor: pointer;
+}
+
+.calling-item:hover {
+    background-color: #f8fafc;
+}
+
+.calling-chevron {
+    transition: transform 0.25s ease;
+}
+
+.calling-duties {
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
