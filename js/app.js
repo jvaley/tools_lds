@@ -17,16 +17,46 @@ const organizations = [
 
 function initIcons() { lucide.createIcons(); }
 
+function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('sud-theme', theme);
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) toggle.setAttribute('aria-label', theme === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro');
+}
+
+function toggleTheme() {
+    applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+}
+
+function resetPagePosition() {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    const root = document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    root.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
+    requestAnimationFrame(() => window.scrollTo(0, 0));
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+        root.style.scrollBehavior = previousBehavior;
+    }, 120);
+}
+
 function showMenu() {
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     document.querySelectorAll('main > div').forEach(d => d.classList.add('hidden'));
     document.getElementById('main-menu').classList.remove('hidden');
+    resetPagePosition();
 }
 
 function openTool(id) {
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     document.querySelectorAll('main > div').forEach(d => d.classList.add('hidden'));
     document.getElementById(id).classList.remove('hidden');
     if (id === 'planificador-tool') renderOrgComboBox();
     initIcons();
+    resetPagePosition();
 }
 
 // --- FUNCIONES DE AGENDAS ---
@@ -130,43 +160,6 @@ function openCouncilAgenda() {
                 <div><span class="doc-label">Última Oración</span><input type="text" class="doc-input"></div>
             `;
     addPointToAgenda('cal-list');
-    initIcons();
-}
-
-function openBaptismAgenda() {
-    setupAgenda('Servicio Bautismal', 'Agenda_Bautismo');
-    const container = document.getElementById('agenda-dynamic-content');
-    container.innerHTML = `
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div><span class="doc-label">Nombre del Candidato</span><input type="text" class="doc-input font-bold text-cyan-800"></div>
-                    <div><span class="doc-label">Fecha y Hora</span><input type="text" class="doc-input" placeholder="Sábado 16:00"></div>
-                </div>
-                <div class="space-y-3">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div><span class="doc-label">Dirige</span><input type="text" class="doc-input"></div>
-                        <div><span class="doc-label">Música (Pianista/Director)</span><input type="text" class="doc-input"></div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div><span class="doc-label">Himno de Apertura</span><input type="text" class="doc-input"></div>
-                        <div><span class="doc-label">Primera Oración</span><input type="text" class="doc-input"></div>
-                    </div>
-                </div>
-                <div class="bg-cyan-50 p-5 rounded-xl border border-cyan-100">
-                    <h4 class="text-[9px] font-black text-cyan-700 uppercase mb-3">Programa de la Ordenanza</h4>
-                    <div class="space-y-3">
-                        <div class="flex gap-2"><span class="text-[9px] font-bold w-32 uppercase text-slate-400">Mensaje (Bautismo)</span><input type="text" class="doc-input flex-1"></div>
-                        <div class="flex gap-2"><span class="text-[9px] font-bold w-32 uppercase text-slate-400">Ordenanza por</span><input type="text" class="doc-input flex-1"></div>
-                        <div class="flex gap-2"><span class="text-[9px] font-bold w-32 uppercase text-slate-400">Mensaje (Esp. Santo)</span><input type="text" class="doc-input flex-1"></div>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div><span class="doc-label">Himno de Clausura</span><input type="text" class="doc-input"></div>
-                    <div><span class="doc-label">Última Oración</span><input type="text" class="doc-input"></div>
-                </div>
-                <div class="agenda-box text-center italic text-slate-400 text-[10px]">
-                    Recordar a los participantes traer ropa blanca y toallas.
-                </div>
-            `;
     initIcons();
 }
 
@@ -310,46 +303,66 @@ function calculateBudget(autoUpdateBudgetRecieved = true) {
     }
 }
 
-function exportToPDF(id, name) {
+async function exportToPDF(id, name) {
     const element = document.getElementById(id);
+    if (!element || typeof html2canvas === 'undefined' || !window.jspdf?.jsPDF) return;
 
     // Guardar estado
     const originalWidth = element.style.width;
 
     // Activar modo PDF
     element.classList.add('pdf-export');
-    element.style.width = '850px';
+    // 718 px equivale al ancho útil de una hoja A4 con márgenes de 8 mm.
+    element.style.width = '718px';
+    try {
+        if (document.fonts && document.fonts.ready) await document.fonts.ready;
 
-    const opt = {
-        margin: [10, 10, 10, 10],
-        filename: `${name}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: {
+        const canvas = await html2canvas(element, {
             scale: 2,
             useCORS: true,
             backgroundColor: '#ffffff',
-            //windowWidth: 1200,   // 🔥 CLAVE
-            width: 850
-        },
-        jsPDF: {
-            unit: 'mm',
-            format: 'a4',
-            orientation: 'portrait'
-        }
-    };
-
-    html2pdf()
-        .set(opt)
-        .from(element)
-        .save()
-        .then(() => {
-            // Restaurar estado
-            element.classList.remove('pdf-export');
-            element.style.width = originalWidth;
+            scrollX: 0,
+            scrollY: -window.scrollY,
+            logging: false
         });
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait', compress: true });
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const margin = 8;
+        const maxWidth = pageWidth - (margin * 2);
+        const maxHeight = pageHeight - (margin * 2);
+        const canvasRatio = canvas.width / canvas.height;
+
+        let imageWidth = maxWidth;
+        let imageHeight = imageWidth / canvasRatio;
+        if (imageHeight > maxHeight) {
+            imageHeight = maxHeight;
+            imageWidth = imageHeight * canvasRatio;
+        }
+
+        const x = (pageWidth - imageWidth) / 2;
+        const y = margin;
+        pdf.addImage(canvas.toDataURL('image/jpeg', 0.98), 'JPEG', x, y, imageWidth, imageHeight, undefined, 'FAST');
+
+        const blob = pdf.output('blob');
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${name}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1500);
+    } catch (error) {
+        console.error('No se pudo generar el PDF:', error);
+        window.alert('No fue posible generar el PDF. Por favor, inténtelo nuevamente.');
+    } finally {
+        element.classList.remove('pdf-export');
+        element.style.width = originalWidth;
+    }
 }
-
-
 // --- DATOS Y FUNCIONES DE LLAMAMIENTOS ---
 
 let currentOrgFilter = 'all';
@@ -370,7 +383,7 @@ const callingsData = [
                     'Dirigir el Consejo de Barrio y reunirse regularmente con su obispado.',
                     'Coordinar y apoyar el trabajo misional, de historia familiar y de bienestar.',
                     'Dar entrevistas de recomendación de templo, bautismo, misión y otras entrevistas de liderazgo.',
-                    'Enseñar, capacitar y supervisar a todos los líderes del barrio.',
+                    'Enseñar, capacitar y supervisar a todos los líderes del barrio.'
                 ]
             },
             {
@@ -379,8 +392,8 @@ const callingsData = [
                     'Asistir al obispo en sus responsabilidades según se les asigne.',
                     'Presidir cuando el obispo esté ausente y se les haya dado autorización.',
                     'Supervisar organizaciones específicas asignadas por el obispo (ej. juventud, primaria).',
-                    'Participar en entrevistas y consejos según las asignaciones recibidas.',
-                    'Apoyar al obispo en la administración de los asuntos del barrio.',
+                    'Participar en entrevistas and consejos según las asignaciones recibidas.',
+                    'Apoyar al obispo en la administración de los asuntos del barrio.'
                 ]
             },
             {
@@ -390,7 +403,15 @@ const callingsData = [
                     'Preparar y enviar informes estadísticos requeridos por la estaca.',
                     'Registrar actas de reuniones del obispado y del consejo de barrio.',
                     'Gestionar la transferencia de registros de membresía (entradas y salidas).',
-                    'Mantener actualizados los datos de hogares y familias del barrio.',
+                    'Mantener actualizados los datos de hogares y familias del barrio.'
+                ]
+            },
+            {
+                title: 'Secretarios Auxiliares de Barrio', icon: 'file-spreadsheet',
+                duties: [
+                    'Registrar y reconciliar todas las transacciones financieras y diezmos del barrio.',
+                    'Mantener actualizados los registros de membresía, ordenanzas y certificados del barrio.',
+                    'Ayudar al secretario de barrio en la preparación de informes financieros y de membresía.'
                 ]
             },
             {
@@ -400,9 +421,9 @@ const callingsData = [
                     'Organizar y programar entrevistas para el obispo y sus consejeros.',
                     'Servir de enlace de comunicación entre el obispado y los líderes del barrio.',
                     'Ayudar al obispo a preparar agendas para reuniones del obispado y el consejo.',
-                    'Gestionar las comunicaciones recibidas de la estaca y sede de la Iglesia.',
+                    'Gestionar las comunicaciones recibidas de la estaca y sede de la Iglesia.'
                 ]
-            },
+            }
         ]
     },
     {
@@ -419,7 +440,7 @@ const callingsData = [
                     'Fortalecer a los jóvenes adultos varones al prepararse para el campo misional.',
                     'Orientar a los nuevos miembros varones que se mudaron al barrio.',
                     'Apoyar a los hermanos en sus responsabilidades de ministración asignadas.',
-                    'Enseñar las doctrinas y principios del sacerdocio de Melquisedec.',
+                    'Enseñar las doctrinas y principios del sacerdocio de Melquisedec.'
                 ]
             },
             {
@@ -428,7 +449,7 @@ const callingsData = [
                     'Apoyar al presidente en la dirección y administración del quórum.',
                     'Supervisar asignaciones específicas del quórum (ej. ministración, actividades).',
                     'Presidir cuando el presidente esté ausente.',
-                    'Participar activamente en el comité de ministración del quórum.',
+                    'Participar activamente en el comité de ministración del quórum.'
                 ]
             },
             {
@@ -437,9 +458,17 @@ const callingsData = [
                     'Mantener registros de asistencia y membresía del quórum.',
                     'Coordinar y registrar las asignaciones de ministración mensualmente.',
                     'Preparar informes de participación para el obispado y la estaca.',
-                    'Gestionar comunicaciones internas del quórum.',
+                    'Gestionar comunicaciones internas del quórum.'
                 ]
             },
+            {
+                title: 'Instructores de Quórum de Élderes', icon: 'book-open',
+                duties: [
+                    'Enseñar las lecciones del quórum el segundo y cuarto domingo del mes según el manual "Ven, sígueme".',
+                    'Fomentar el diálogo doctrinal y la participación activa de los hermanos en las lecciones.',
+                    'Colaborar con la presidencia del quórum para planificar la instrucción dominical.'
+                ]
+            }
         ]
     },
     {
@@ -454,9 +483,9 @@ const callingsData = [
                     'Coordinar esfuerzos de bienestar, servicio y ayuda a familias necesitadas.',
                     'Trabajar con el obispado en los asuntos de bienestar del barrio.',
                     'Enseñar y capacitar a las hermanas en sus responsabilidades del evangelio.',
-                    'Orientar y bienvenida a nuevas hermanas que se unen al barrio.',
+                    'Orientar y dar la bienvenida a nuevas hermanas que se unen al barrio.',
                     'Apoyar el trabajo misional, historia familiar y asistencia al templo.',
-                    'Llevar a cabo reuniones y actividades mensuales de la Sociedad de Socorro.',
+                    'Llevar a cabo reuniones y actividades mensuales de la Sociedad de Socorro.'
                 ]
             },
             {
@@ -465,7 +494,7 @@ const callingsData = [
                     'Apoyar a la presidenta en todas sus responsabilidades.',
                     'Supervisar áreas específicas asignadas (ej. actividades, ministración, bienestar).',
                     'Presidir las reuniones cuando la presidenta esté ausente.',
-                    'Acompañar a la presidenta en visitas de ministración y bienestar.',
+                    'Acompañar a la presidenta en visitas de ministración y bienestar.'
                 ]
             },
             {
@@ -474,9 +503,25 @@ const callingsData = [
                     'Mantener registros de asistencia y datos de las hermanas.',
                     'Registrar actas de reuniones de presidencia.',
                     'Coordinar y registrar asignaciones de ministración mensualmente.',
-                    'Preparar informes estadísticos para el obispado.',
+                    'Preparar informes estadísticos para el obispado.'
                 ]
             },
+            {
+                title: 'Coordinadora de Servicio de Compasión', icon: 'heart-handshake',
+                duties: [
+                    'Organizar y coordinar la ayuda temporal para los enfermos, necesitados o familias en duelo del barrio.',
+                    'Trabajar con la presidencia de la Sociedad de Socorro para evaluar las necesidades específicas de los miembros.',
+                    'Coordinar la preparación de alimentos, cuidado de niños y otro tipo de asistencia de emergencia.'
+                ]
+            },
+            {
+                title: 'Maestras de la Sociedad de Socorro', icon: 'book-open',
+                duties: [
+                    'Preparar y enseñar lecciones los domingos según los manuales aprobados de la Iglesia ("Ven, sígueme").',
+                    'Fomentar un ambiente espiritual de hermandad, revelación personal y aprendizaje mutuo durante las clases.',
+                    'Apoyar a las hermanas en la aplicación práctica de los principios enseñados.'
+                ]
+            }
         ]
     },
     {
@@ -493,7 +538,7 @@ const callingsData = [
                     'Preparar a las jóvenes para recibir ordenanzas del templo y servir misiones.',
                     'Planificar y supervisar actividades con propósito espiritual y de servicio.',
                     'Orientar a las jóvenes al transicionar a la Sociedad de Socorro (18 años).',
-                    'Ministrar activamente a las jóvenes y sus familias.',
+                    'Ministrar activamente a las jóvenes y sus familias.'
                 ]
             },
             {
@@ -502,7 +547,7 @@ const callingsData = [
                     'Apoyar a la presidenta en el trabajo con las jóvenes del barrio.',
                     'Supervisar grupos de edad o clases específicas asignadas.',
                     'Participar en la planificación y ejecución de todas las actividades.',
-                    'Presidir en ausencia de la presidenta.',
+                    'Presidir en ausencia de la presidenta.'
                 ]
             },
             {
@@ -510,7 +555,7 @@ const callingsData = [
                 duties: [
                     'Mantener registros de asistencia de todas las jóvenes.',
                     'Registrar el progreso en el programa Para Jóvenes.',
-                    'Preparar informes para el obispado.',
+                    'Preparar informes para el obispado.'
                 ]
             },
             {
@@ -519,9 +564,34 @@ const callingsData = [
                     'Enseñar lecciones dominicales edificantes a las jóvenes de su clase.',
                     'Desarrollar relaciones de mentoría y confianza con las jóvenes asignadas.',
                     'Participar activamente en actividades y campamentos de la organización.',
-                    'Informar al liderazgo sobre las necesidades y situación de las jóvenes.',
+                    'Informar al liderazgo sobre las necesidades y situación de las jóvenes.'
                 ]
             },
+            {
+                title: 'Presidenta de Clase de las Mujeres Jóvenes', icon: 'star',
+                duties: [
+                    'Dirigir y presidir las reuniones de la presidencia de clase de las jóvenes.',
+                    'Planificar actividades y lecciones dominicales bajo la supervisión de las asesoras adultas.',
+                    'Ministrar a las integrantes de su clase e invitar a todas a participar activamente.',
+                    'Representar a su clase en las reuniones de liderazgo del barrio si corresponde.'
+                ]
+            },
+            {
+                title: 'Consejeras de Clase de las Mujeres Jóvenes', icon: 'users',
+                duties: [
+                    'Apoyar a la presidenta de clase en todas sus iniciativas y tareas.',
+                    'Dirigir las reuniones de clase o actividades cuando la presidenta esté ausente.',
+                    'Ayudar a ministrar a las integrantes de la clase y fomentar la unidad.'
+                ]
+            },
+            {
+                title: 'Secretaria de Clase de las Mujeres Jóvenes', icon: 'file-text',
+                duties: [
+                    'Llevar un control y registro de asistencia detallado de las jóvenes de su clase.',
+                    'Ayudar a la presidencia de clase a preparar las agendas de las reuniones.',
+                    'Hacer un seguimiento de las actividades y metas del programa Para Jóvenes.'
+                ]
+            }
         ]
     },
     {
@@ -531,11 +601,11 @@ const callingsData = [
             {
                 title: 'Presidente del Quórum de Diáconos', icon: 'star',
                 duties: [
-                    'Presidir y dirigir el quórum de diáconos (12–13 años) bajo la dirección del obispado.',
+                    'Presidir and dirigir el quórum de diáconos (12–13 años) bajo la dirección del obispado.',
                     'Asignar a los diáconos para pasar la Santa Cena cada domingo.',
-                    'Bienvenida y orientación a nuevos miembros del quórum.',
+                    'Dar la bienvenida y orientación a nuevos miembros del quórum.',
                     'Liderar el consejo del quórum de diáconos.',
-                    'Recomendar candidatos para ordenaciones al sacerdocio.',
+                    'Recomendar candidatos para ordenaciones al sacerdocio.'
                 ]
             },
             {
@@ -545,7 +615,7 @@ const callingsData = [
                     'Supervisar la preparación de los emblemas de la Santa Cena.',
                     'Coordinar responsabilidades de mayordomía del templo.',
                     'Liderar el consejo del quórum de maestros.',
-                    'Apoyar a los miembros del quórum en el servicio a los demás.',
+                    'Apoyar a los miembros del quórum en el servicio a los demás.'
                 ]
             },
             {
@@ -555,7 +625,31 @@ const callingsData = [
                     'Supervisar la bendición y administración de la Santa Cena cada domingo.',
                     'Apoyar en el bautismo de nuevos miembros cuando se le solicite.',
                     'Preparar y orientar a los jóvenes para recibir el Sacerdocio de Melquisedec.',
-                    'Motivar a los jóvenes a prepararse para servir una misión de tiempo completo.',
+                    'Motivar a los jóvenes a prepararse para servir una misión de tiempo completo.'
+                ]
+            },
+            {
+                title: 'Consejeros de Quórum / Asistentes de Sacerdotes', icon: 'users',
+                duties: [
+                    'Ayudar al presidente del quórum (o al obispo en el de sacerdotes) a dirigir las reuniones y proyectos del quórum.',
+                    'Dirigir las reuniones de quórum y actividades semanales en ausencia del presidente.',
+                    'Ministrar a los miembros del quórum y motivar su asistencia regular.'
+                ]
+            },
+            {
+                title: 'Secretarios de Quórum', icon: 'file-text',
+                duties: [
+                    'Llevar el registro de asistencia dominical y de las actividades del quórum.',
+                    'Ayudar a la presidencia del quórum a preparar las agendas de las reuniones.',
+                    'Llevar el control de las asignaciones de la Santa Cena y de recolección de ofrendas.'
+                ]
+            },
+            {
+                title: 'Asesor del Sacerdocio Aarónico', icon: 'compass',
+                duties: [
+                    'Aconsejar y apoyar al obispado y a las presidencias de quórum en sus tareas de liderazgo.',
+                    'Ayudar a planificar y supervisar actividades semanales para los jóvenes del barrio.',
+                    'Ministrar personalmente a los jóvenes varones para ayudarles a prepararse para el Sacerdocio de Melquisedec y la misión.'
                 ]
             },
             {
@@ -565,9 +659,9 @@ const callingsData = [
                     'Planificar y supervisar actividades con propósito espiritual y de servicio.',
                     'Coordinar el programa Para Jóvenes de la Iglesia.',
                     'Trabajar con los padres en el desarrollo espiritual de sus hijos.',
-                    'Ministrar a los jóvenes varones del barrio.',
+                    'Ministrar a los jóvenes varones del barrio.'
                 ]
-            },
+            }
         ]
     },
     {
@@ -583,7 +677,7 @@ const callingsData = [
                     'Supervisar las clases, actividades y programas de la Primaria.',
                     'Preparar a los niños para su transición a las organizaciones de juventud.',
                     'Coordinar la música y presentaciones especiales incluyendo el programa anual.',
-                    'Ministrar activamente a los niños y sus familias en el barrio.',
+                    'Ministrar activamente a los niños y sus familias en el barrio.'
                 ]
             },
             {
@@ -592,7 +686,7 @@ const callingsData = [
                     'Apoyar a la presidenta en todas sus responsabilidades.',
                     'Supervisar grupos de edad o aulas específicas asignadas.',
                     'Coordinar actividades y programas de la Primaria.',
-                    'Presidir en ausencia de la presidenta.',
+                    'Presidir en ausencia de la presidenta.'
                 ]
             },
             {
@@ -600,7 +694,7 @@ const callingsData = [
                 duties: [
                     'Mantener registros de asistencia de todos los niños.',
                     'Preparar informes estadísticos para el obispado.',
-                    'Coordinar materiales, recursos de enseñanza y comunicaciones.',
+                    'Coordinar materiales, recursos de enseñanza y comunicaciones.'
                 ]
             },
             {
@@ -609,7 +703,15 @@ const callingsData = [
                     'Preparar y enseñar lecciones dominicales edificantes a los niños de su clase.',
                     'Crear un ambiente de aprendizaje espiritual, seguro y ameno.',
                     'Reportar al liderazgo sobre las necesidades individuales de los niños.',
-                    'Coordinar con los padres sobre el progreso y bienestar de sus hijos.',
+                    'Coordinar con los padres sobre el progreso y bienestar de sus hijos.'
+                ]
+            },
+            {
+                title: 'Líder de Guardería (Nursery Leader)', icon: 'baby',
+                duties: [
+                    'Enseñar y cuidar a los niños pequeños (de 18 meses a 2 años) en un ambiente seguro y amoroso.',
+                    'Presentar lecciones cortas y sencillas basadas en el manual "Mirad a vuestros pequeñitos".',
+                    'Ayudar a los niños a sentirse felices y seguros en la capilla.'
                 ]
             },
             {
@@ -618,9 +720,17 @@ const callingsData = [
                     'Dirigir la música en todas las reuniones de la Primaria.',
                     'Seleccionar himnos y canciones primarias apropiadas a cada ocasión.',
                     'Preparar el programa anual de Primaria con las canciones correspondientes.',
-                    'Coordinar el acompañamiento al piano u otros instrumentos.',
+                    'Coordinar el acompañamiento al piano u otros instrumentos.'
                 ]
             },
+            {
+                title: 'Pianista de la Primaria', icon: 'play',
+                duties: [
+                    'Tocar el piano u otro instrumento musical de acompañamiento durante el tiempo para cantar de la Primaria.',
+                    'Colaborar estrechamente con la líder de música de la Primaria.',
+                    'Proporcionar música de preludio y postludio reverente durante las reuniones de los niños.'
+                ]
+            }
         ]
     },
     {
@@ -635,7 +745,7 @@ const callingsData = [
                     'Reclutar, capacitar y apoyar continuamente a los maestros.',
                     'Asegurarse de que se utilicen los materiales de enseñanza aprobados por la Iglesia.',
                     'Trabajar con el obispado para fortalecer la enseñanza del evangelio en el barrio.',
-                    'Organizar y supervisar clases para diferentes grupos de edad.',
+                    'Organizar y supervisar clases para diferentes grupos de edad.'
                 ]
             },
             {
@@ -643,7 +753,7 @@ const callingsData = [
                 duties: [
                     'Apoyar al presidente en la administración de la Escuela Dominical.',
                     'Supervisar clases o áreas de enseñanza específicas asignadas.',
-                    'Presidir cuando el presidente esté ausente.',
+                    'Presidir cuando el presidente esté ausente.'
                 ]
             },
             {
@@ -653,9 +763,17 @@ const callingsData = [
                     'Estudiar las escrituras y materiales de estudio aprobados semanalmente.',
                     'Crear un ambiente de aprendizaje participativo, espiritual e inclusivo.',
                     'Asistir puntualmente y cubrir su responsabilidad de enseñanza.',
-                    'Reportar ausencias recurrentes de estudiantes al liderazgo.',
+                    'Reportar ausencias recurrentes de estudiantes al liderazgo.'
                 ]
             },
+            {
+                title: 'Bibliotecario de Barrio', icon: 'folder',
+                duties: [
+                    'Custodiar los materiales y recursos didácticos del barrio en la biblioteca o centro de recursos.',
+                    'Ayudar a los maestros y líderes a conseguir láminas, manuales, proyectores y otros medios para sus clases.',
+                    'Asegurar el correcto uso y conservación de todos los dispositivos del centro de recursos del barrio.'
+                ]
+            }
         ]
     },
     {
@@ -671,7 +789,7 @@ const callingsData = [
                     'Identificar personas no miembros que puedan estar interesadas en el evangelio.',
                     'Apoyar la integración y retención de nuevos conversos al barrio.',
                     'Capacitar y motivar a los miembros para que compartan el evangelio.',
-                    'Presentar informes misionales en el Consejo de Barrio mensualmente.',
+                    'Presentar informes misionales en el Consejo de Barrio mensualmente.'
                 ]
             },
             {
@@ -680,9 +798,9 @@ const callingsData = [
                     'Compartir activamente el evangelio con vecinos, amigos y familiares.',
                     'Enseñar las lecciones del evangelio a investigadores cuando sea posible.',
                     'Acompañar a investigadores a las reuniones de la Iglesia.',
-                    'Apoyar al líder de la obra misional en todos los esfuerzos del barrio.',
+                    'Apoyar al líder de la obra misional en todos los esfuerzos del barrio.'
                 ]
-            },
+            }
         ]
     },
     {
@@ -697,7 +815,7 @@ const callingsData = [
                     'Enseñar a los miembros a utilizar FamilySearch y herramientas digitales.',
                     'Ayudar a los miembros a identificar antepasados y realizar su trabajo vicario.',
                     'Coordinar eventos y actividades de historia familiar en el barrio.',
-                    'Presentar informes y metas en el Consejo de Barrio.',
+                    'Presentar informes y metas en el Consejo de Barrio.'
                 ]
             },
             {
@@ -707,13 +825,21 @@ const callingsData = [
                     'Enseñar cómo usar FamilySearch y otras herramientas de historia familiar.',
                     'Ayudar a preparar nombres de antepasados para las ordenanzas del templo.',
                     'Organizar talleres y sesiones de capacitación de historia familiar en el barrio.',
-                    'Trabajar especialmente con la juventud en proyectos de historia familiar.',
+                    'Trabajar especialmente con la juventud en proyectos de historia familiar.'
                 ]
             },
+            {
+                title: 'Consultor Juvenil de Historia Familiar', icon: 'search-code',
+                duties: [
+                    'Ayudar a los jóvenes y niños del barrio a iniciarse en la historia familiar y encontrar a sus antepasados.',
+                    'Enseñar a sus pares a utilizar aplicaciones móviles como FamilySearch e indexación.',
+                    'Colaborar con el líder de templo e historia familiar para coordinar actividades con los quórums y clases.'
+                ]
+            }
         ]
     },
     {
-        id: 'Seminario', name: 'Seminario e Instituto', color: '#c2410c', icon: 'graduation-cap',
+        id: 'Seminario', name: 'Seminario', color: '#c2410c', icon: 'book-open',
         reference: 'Manual General, Cap. 16',
         callings: [
             {
@@ -721,23 +847,73 @@ const callingsData = [
                 duties: [
                     'Enseñar las escrituras de manera sistemática a los jóvenes de 14–18 años.',
                     'Preparar lecciones espirituales, edificantes y relevantes para cada clase.',
-                    'Motivar a los jóvenes a estudiar, aplicar y memorizar versículos de dominio.',
+                    'Motivar a los jóvenes a estudiar, aplicar y memorizar versículos de dominio doctrinal.',
                     'Reportar la asistencia diaria al coordinador de seminario del barrio o estaca.',
                     'Trabajar con los padres y el obispado para apoyar a los jóvenes.',
-                    'Crear un ambiente espiritual de aprendizaje y seguridad emocional.',
+                    'Crear un ambiente espiritual de aprendizaje y seguridad emocional.'
                 ]
             },
             {
-                title: 'Coordinador de Seminario e Instituto', icon: 'star',
+                title: 'Coordinador de Seminario', icon: 'star',
                 duties: [
                     'Supervisar y apoyar a todos los maestros de seminario del barrio.',
                     'Coordinar con el obispado y los padres el progreso de los jóvenes.',
                     'Gestionar registros de asistencia y créditos de los estudiantes.',
-                    'Promover la participación activa y puntual en el programa de seminario.',
+                    'Promover la participación activa y puntual en el programa de seminario.'
                 ]
-            },
+            }
         ]
     },
+    {
+        id: 'Instituto', name: 'Instituto', color: '#4338ca', icon: 'graduation-cap',
+        reference: 'Manual General, Cap. 16',
+        callings: [
+            {
+                title: 'Maestro de Instituto', icon: 'book-open',
+                duties: [
+                    'Preparar y enseñar lecciones del evangelio centradas en Cristo y basadas en las escrituras para jóvenes adultos de 18 a 30 años.',
+                    'Fomentar la participación activa de los estudiantes en la clase de instituto.',
+                    'Registrar y reportar la asistencia de los alumnos para que reciban créditos y certificados oficiales.'
+                ]
+            },
+            {
+                title: 'Representante de Instituto', icon: 'user-check',
+                duties: [
+                    'Invitar y motivar a los jóvenes adultos del barrio a inscribirse y asistir activamente a instituto.',
+                    'Coordinar con los líderes del barrio y la estaca para promover el programa y facilitar transporte o recursos.'
+                ]
+            }
+        ]
+    },
+    {
+        id: 'JAS', name: 'Jóvenes Adultos Solteros', color: '#565656ff', icon: 'zap',
+        reference: 'Manual General, Cap. 14',
+        callings: [
+            {
+                title: 'Líder de Jóvenes Adultos Solteros de Barrio', icon: 'user',
+                duties: [
+                    'Servir en el comité de Jóvenes Adultos Solteros del barrio/estaca.',
+                    'Encontrar, conocer y ministrar personalmente a cada joven adulto soltero de 18 a 30 años en el barrio.',
+                    'Planificar actividades edificantes que ayuden a los jóvenes a fortalecer su fe y sus relaciones.',
+                    'Colaborar con los líderes del sacerdocio y de las organizaciones auxiliares para integrar a los jóvenes adultos solteros.'
+                ]
+            },
+            {
+                title: 'Asesor de Jóvenes Adultos Solteros de Barrio', icon: 'users',
+                duties: [
+                    'Apoyar y aconsejar al comité de jóvenes adultos solteros en la planificación y ejecución de actividades.',
+                    'Fortalecer individualmente a los jóvenes adultos y ayudarlos a participar plenamente en las actividades de la Iglesia.'
+                ]
+            },
+            {
+                title: 'Comité de Jóvenes Adultos Solteros', icon: 'users',
+                duties: [
+                    'Planificar actividades que reúnan a los jóvenes para servir, aprender y socializar.',
+                    'Coordinar y promover la asistencia a clases de instituto y otras oportunidades educativas del evangelio.'
+                ]
+            }
+        ]
+    }
 ];
 
 function openCallings() {
@@ -857,6 +1033,10 @@ function toggleCalling(el) {
 
 window.onload = () => {
 
+    const savedTheme = localStorage.getItem('sud-theme');
+    const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    applyTheme(savedTheme || preferredTheme);
+
     // Populate Budget Organizations Select
     const budgetOrgSelect = document.getElementById('budget-org-combo-box');
     if (budgetOrgSelect) {
@@ -869,4 +1049,7 @@ window.onload = () => {
 
     for (let i = 0; i < 8; i++) addRow();
     showMenu();
+    initIcons();
 };
+
+window.addEventListener('pageshow', resetPagePosition);

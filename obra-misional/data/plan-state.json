@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-04T00:10:44.805Z",
+  "theme": "dark",
+  "fields": {
+    "section-metas:input:0": {
+      "type": "value",
+      "value": "7"
+    },
+    "section-metas:input:1": {
+      "type": "value",
+      "value": "8"
+    },
+    "section-metas:input:2": {
+      "type": "value",
+      "value": "0"
+    },
+    "section-metas:input:3": {
+      "type": "value",
+      "value": "0"
+    },
+    "page-agenda-coordinacion:textarea:4": {
+      "type": "value",
+      "value": ""
+    },
+    "page-agenda-coordinacion:input:5": {
+      "type": "value",
+      "value": ""
+    },
+    "page-agenda-coordinacion:input:6": {
+      "type": "value",
+      "value": ""
+    },
+    "page-agenda-coordinacion:textarea:7": {
+      "type": "value",
+      "value": ""
+    },
+    "page-agenda-coordinacion:input:8": {
+      "type": "value",
+      "value": ""
+    },
+    "page-agenda-coordinacion:input:9": {
+      "type": "value",
+      "value": ""
+    },
+    "page-agenda-coordinacion:textarea:10": {
+      "type": "value",
+      "value": ""
+    },
+    "page-agenda-coordinacion:input:11": {
+      "type": "value",
+      "value": ""
+    },
+    "page-agenda-coordinacion:input:12": {
+      "type": "value",
+      "value": ""
+    },
+    "page-agenda-coordinacion:textarea:13": {
+      "type": "value",
+      "value": ""
+    },
+    "page-agenda-coordinacion:input:14": {
+      "type": "value",
+      "value": ""
+    }
+  },
+  "actions": [
+    {
+      "action": "Ver a detalle cada miembro de la senda de los convenios",
+      "responsable": "",
+      "plazo": "",
+      "hecho": false
+    },
+    {
+      "action": "Por mes tener una actividad misional de barrio que sea en rotación por organización el líder misional se encarga de distribuir la asignación de actividad.",
+      "responsable": "",
+      "plazo": "",
+      "hecho": false
+    },
+    {
+      "action": "Salir con los misioneros - Misioneros preparados",
+      "responsable": "",
+      "plazo": "",
+      "hecho": false
+    },
+    {
+      "action": "Fortalecer la enseñanza de los principios para los miembros",
+      "responsable": "",
+      "plazo": "",
+      "hecho": false
+    },
+    {
+      "action": "Impartir cada domingo la clase principios del evangelio",
+      "responsable": "",
+      "plazo": "",
+      "hecho": false
+    },
+    {
+      "action": "En cada reunion de consejo de barrio recibir dos referencias por organización, en el drive hay un documento.",
+      "responsable": "",
+      "plazo": "",
+      "hecho": false
+    },
+    {
+      "action": "Que los misioneros tengan un documento donde estén las parejas ministrantes de cada hermano. Por trimestre ver que familias se van a enfocar para activar Q. Elderes y Soc. Soc. (6 familias).",
+      "responsable": "",
+      "plazo": "",
+      "hecho": false
+    },
+    {
+      "action": "Calendario de las noches de hogar con los misioneros. La familia que tenga mas noches de hogar obtiene un presente.",
+      "responsable": "",
+      "plazo": "",
+      "hecho": false
+    }
+  ],
+  "agendaAmigos": []
+}

@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Misional — Barrio Milagro</title>
+    <meta name="description"
+        content="Dashboard misional operativo del Barrio Milagro. Seguimiento de metas, coordinación misional y agendas para líderes.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260806g">
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="no-print app-navbar"
+        style="position:fixed;top:0;left:0;right:0;height:60px;z-index:500;display:flex;align-items:center;padding:0 24px;">
+        <div class="nav-shell"
+            style="max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;">
+            <div class="brand-lockup">
+                <span class="mission-brand-mark" aria-hidden="true"><i data-lucide="send"></i></span>
+                <div class="mission-brand-copy">
+                    <div class="brand-title"
+                        style="font-size:20px;font-weight:800;display:flex;align-items:center;gap:6px;">
+                        Plan Misional
+                        <button onclick="openModal('modal-info-plan')" title="¿Qué es un Plan Misional?"
+                            aria-label="Abrir información del Plan Misional"
+                            style="background:none;border:none;cursor:pointer;display:flex;align-items:center;padding:2px;">
+                            <i data-lucide="info" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="brand-subtitle"
+                        style="font-size:15px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">
+                        Barrio Milagro</div>
+                </div>
+            </div>
+            <div class="navbar-actions">
+                <a href="../index.html" class="btn-secondary mission-home-link" aria-label="Volver a Herramientas SUD">
+                    <i data-lucide="arrow-left" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    <span>Herramientas SUD</span>
+                </a>
+                <button class="icon-action" type="button" onclick="toggleTheme()" aria-label="Cambiar tema">
+                    <i data-lucide="sun-moon" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                </button>
+                <span class="nav-action-divider" aria-hidden="true"></span>
+                <button onclick="savePlanData()" class="btn-secondary nav-save nav-save-accent" aria-label="Guardar datos"
+                    style="font-size:11px;padding:8px 16px;">
+                    <i data-lucide="save" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    Guardar
+                </button>
+                <button onclick="exportCurrentView()" class="btn-primary nav-export nav-export-accent"
+                    aria-label="Generar PDF"
+                    style="font-size:11px;padding:8px 16px;">
+                    <i data-lucide="download" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    Generar PDF
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main id="main-plan-content" class="app-view" data-view="dashboard"
+        style="max-width:1200px;margin:0 auto;padding:80px 24px 48px;">
+
+        <!-- Header PDF only -->
+        <div class="institucional-header">
+            <div style="font-size:9pt;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4pt;">La Iglesia de
+                Jesucristo de los Santos de los Últimos Días</div>
+            <div class="print-title" style="font-size:20pt;text-transform:uppercase;letter-spacing:0.06em;">Plan
+                Misional</div>
+            <div style="font-size:10pt;font-weight:600;color:black;margin-top:4pt;">Barrio Milagro · Estaca Milagro
+            </div>
+        </div>
+
+        <section class="mission-hero no-print" aria-labelledby="mission-hero-title">
+            <div class="mission-hero-media" aria-hidden="true">
+                <img src="../assets/images/community-planning-hero.png" alt="">
+            </div>
+            <div class="mission-hero-copy">
+                <span class="mission-hero-kicker"><i data-lucide="map-pin"></i> Barrio Milagro · Estaca Milagro</span>
+                <h1 id="mission-hero-title">Una visión compartida. Un plan que se convierte en acción.</h1>
+                <p>Alineamos líderes, miembros y misioneros para acompañar a cada persona con propósito y amor.</p>
+                <div class="mission-hero-tags" aria-label="Enfoques del plan">
+                    <span><i data-lucide="users-round"></i> Unidad</span>
+                    <span><i data-lucide="target"></i> Propósito</span>
+                    <span><i data-lucide="trending-up"></i> Seguimiento</span>
+                </div>
+            </div>
+            <div class="mission-hero-caption" aria-hidden="true">
+                <span>Plan anual</span>
+                <strong>Servir con intención</strong>
+            </div>
+        </section>
+
+        <!-- METAS -->
+        <section id="section-metas" class="dashboard-section">
+            <div class="section-heading section-heading-centered no-print">
+                <div>
+                    <h2>Metas principales</h2>
+                    <p>Indicadores que orientan el trabajo semanal y anual.</p>
+                </div>
+            </div>
+            <div class="metrics-grid"
+                style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:32px;">
+
+                <div class="card metric-card metric-card-blue" style="padding:22px;border-top:3px solid #0066FF;">
+                    <div class="metric-card-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                        <div>
+                            <div class="section-label" style="color:#0066FF;">Bautismos</div>
+                            <div style="font-size:10px;color:var(--text-muted);margin-top:2px;font-weight:500;">Meta
+                                Anual
+                            </div>
+                        </div>
+                        <div class="metric-card-icon">
+                            <i data-lucide="droplet" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="metric-card-value-row" style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
+                        <input type="number" id="val-bautismos" value="4" oninput="updateProgress('bautismos',18)"
+                            style="font-size:38px;font-weight:900;color:var(--color-950);width:65px;border:none;outline:none;background:transparent;font-family:'Montserrat',sans-serif;">
+                        <span class="metric-card-target" style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 18</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="bar-bautismos" class="progress-fill metric-progress metric-progress-blue" style="width:22%"></div>
+                    </div>
+                </div>
+
+                <div class="card metric-card metric-card-green" style="padding:22px;border-top:3px solid #059669;">
+                    <div class="metric-card-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                        <div>
+                            <div class="section-label" style="color:#059669;">Lecciones con Miembro</div>
+                            <div style="font-size:10px;color:var(--text-muted);margin-top:2px;font-weight:500;">Meta
+                                Semanal
+                            </div>
+                        </div>
+                        <div class="metric-card-icon">
+                            <i data-lucide="book-open" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="metric-card-value-row" style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
+                        <input type="number" id="val-lecciones" value="8" oninput="updateProgress('lecciones',12)"
+                            style="font-size:38px;font-weight:900;color:var(--color-950);width:65px;border:none;outline:none;background:transparent;font-family:'Montserrat',sans-serif;">
+                        <span class="metric-card-target" style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 12</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="bar-lecciones" class="progress-fill metric-progress metric-progress-green"
+                            style="width:66%;background:linear-gradient(90deg,#059669,#34D399);"></div>
+                    </div>
+                </div>
+
+                <div class="card metric-card metric-card-amber" style="padding:22px;border-top:3px solid #D97706;">
+                    <div class="metric-card-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                        <div>
+                            <div class="section-label" style="color:#D97706;">Referencias</div>
+                            <div style="font-size:10px;color:var(--text-muted);margin-top:2px;font-weight:500;">2 por
+                                Organización / Mes</div>
+                        </div>
+                        <div class="metric-card-icon">
+                            <i data-lucide="user-plus" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="metric-card-value-row" style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
+                        <input type="number" id="val-ref" value="0" oninput="updateProgress('ref',10)"
+                            style="font-size:38px;font-weight:900;color:var(--color-950);width:65px;border:none;outline:none;background:transparent;font-family:'Montserrat',sans-serif;">
+                        <span class="metric-card-target" style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="bar-ref" class="progress-fill metric-progress metric-progress-amber"
+                            style="width:0%;background:linear-gradient(90deg,#D97706,#FCD34D);"></div>
+                    </div>
+                </div>
+
+                <div class="card metric-card metric-card-slate" style="padding:22px;border-top:3px solid #64748B;">
+                    <div class="metric-card-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                        <div>
+                            <div class="section-label" style="color:#475569;">Asistencia Sacramental</div>
+                            <div style="font-size:10px;color:var(--text-muted);margin-top:2px;font-weight:500;">Meta
+                                Dominical
+                            </div>
+                        </div>
+                        <div class="metric-card-icon">
+                            <i data-lucide="users-round" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="metric-card-value-row" style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
+                        <input type="number" id="val-asistencia" value="0" oninput="updateProgress('asistencia',150)"
+                            style="font-size:38px;font-weight:900;color:var(--color-950);width:82px;border:none;outline:none;background:transparent;font-family:Inter,sans-serif;">
+                        <span class="metric-card-target" style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 150</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="bar-asistencia" class="progress-fill metric-progress metric-progress-slate"
+                            style="width:0%;background:linear-gradient(90deg,#475569,#94A3B8);"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LIDERAZGO -->
+        <section id="section-liderazgo" style="margin-bottom:28px;">
+            <div class="card" style="padding:28px;">
+                <div style="margin-bottom:24px;">
+                    <h2 class="section-label">Liderazgo de la Obra</h2>
+                    <div class="section-subtitle" style="margin-top:4px;">Haz clic para ver responsabilidades del Manual
+                        General</div>
+                </div>
+                <div class="icon-button-grid">
+
+                    <button class="icon-btn" onclick="openModal('modal-lider')">
+                        <div class="icon-btn-circle">
+                            <i data-lucide="briefcase-business" class="lucide-icon lucide-icon-lg"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span class="icon-btn-label">Líder Misional</span>
+                    </button>
+
+                    <button class="icon-btn green" onclick="openModal('modal-presidencias')">
+                        <div class="icon-btn-circle">
+                            <i data-lucide="users" class="lucide-icon lucide-icon-lg" aria-hidden="true"></i>
+                        </div>
+                        <span class="icon-btn-label">QE / Soc. Socorro</span>
+                    </button>
+
+                    <button class="icon-btn amber" onclick="openModal('modal-misioneros-barrio')">
+                        <div class="icon-btn-circle">
+                            <i data-lucide="house" class="lucide-icon lucide-icon-lg" aria-hidden="true"></i>
+                        </div>
+                        <span class="icon-btn-label">Misioneros Barrio</span>
+                    </button>
+
+                    <button class="icon-btn purple" onclick="openModal('modal-jovenes')">
+                        <div class="icon-btn-circle">
+                            <i data-lucide="zap" class="lucide-icon lucide-icon-lg" aria-hidden="true"></i>
+                        </div>
+                        <span class="icon-btn-label">Jóvenes Líderes</span>
+                    </button>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- AGENDAS -->
+        <section id="section-agendas" style="margin-bottom:28px;">
+            <div class="card" style="padding:28px;">
+                <div style="margin-bottom:24px;">
+                    <h2 class="section-label">Agendas de Reuniones</h2>
+                    <div class="section-subtitle" style="margin-top:4px;">Selecciona para llenar y exportar a PDF</div>
+                </div>
+                <div class="agenda-card-grid">
+
+                    <a class="agenda-card agenda-card-link" href="index.html?page=agenda-coordinacion"
+                        aria-label="Abrir página de Agenda de Coordinación Misional">
+                        <div class="agenda-card-icon">
+                            <i data-lucide="calendar-days" class="lucide-icon lucide-icon-lg" aria-hidden="true"></i>
+                        </div>
+                        <div class="agenda-card-title">Coord. Misional</div>
+                        <div class="agenda-card-sub">Reunión semanal</div>
+                    </a>
+
+                    <a class="agenda-card agenda-card-link" href="index.html?page=agenda-bautismo"
+                        aria-label="Abrir página de Agenda Bautismal">
+                        <div class="agenda-card-icon">
+                            <i data-lucide="droplet" class="lucide-icon lucide-icon-lg" aria-hidden="true"></i>
+                        </div>
+                        <div class="agenda-card-title">Agenda Bautismal</div>
+                        <div class="agenda-card-sub">Programa del servicio</div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- MATRIZ DE ACCIONES -->
+        <section id="section-matriz" style="margin-bottom:32px;">
+            <div class="card" style="padding:24px;">
+                <div
+                    style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
+                    <div>
+                        <h2 class="section-label">Matriz de Acciones</h2>
+                        <div class="section-subtitle" style="margin-top:3px;">Manual 4.4.5 — Registro de acuerdos</div>
+                    </div>
+                    <button onclick="addRow()" class="btn-secondary" style="font-size:11px;padding:8px 14px;">
+                        <i data-lucide="plus" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                        Nueva acción
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="actions-table" style="width:100%;border-collapse:collapse;">
+                        <thead>
+                            <tr style="border-bottom:1px solid var(--border);">
+                                <th
+                                    style="text-align:left;padding:8px 12px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);width:55%;">
+                                    Acción</th>
+                                <th
+                                    style="text-align:left;padding:8px 12px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);width:20%;">
+                                    Responsable</th>
+                                <th
+                                    style="text-align:left;padding:8px 12px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);width:15%;">
+                                    Plazo</th>
+                                <th
+                                    style="text-align:center;padding:8px 12px;font-size:10px;font-weight:700;color:var(--text-muted);">
+                                    ✓</th>
+                                <th style="width:40px;" class="no-print"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="actions-table">
+                            <!-- 1 -->
+                            <tr style="border-bottom:1px solid var(--color-50);">
+                                <td style="padding:11px 12px;" data-label="Acción"><textarea
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:var(--text-primary);background:transparent;resize:none;"
+                                        rows="2">Ver a detalle cada miembro de la senda de los convenios</textarea></td>
+                                <td style="padding:11px 12px;" data-label="Responsable"><input type="text"
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text-secondary);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Plazo"><input type="date"
+                                        style="font-family:'Montserrat',sans-serif;font-size:11px;border:none;outline:none;color:var(--text-muted);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" data-label="Hecho"><input
+                                        type="checkbox" style="width:15px;height:15px;accent-color:var(--color-500);">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" class="no-print">
+                                    <button onclick="this.closest('tr').remove()" class="btn-delete-row"
+                                        title="Eliminar acción" aria-label="Eliminar acción">
+                                        <i data-lucide="trash-2" class="lucide-icon lucide-icon-sm"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- 2 -->
+                            <tr style="border-bottom:1px solid var(--color-50);">
+                                <td style="padding:11px 12px;" data-label="Acción"><textarea
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:var(--text-primary);background:transparent;resize:none;"
+                                        rows="3">Por mes tener una actividad misional de barrio que sea en rotación por organización el líder misional se encarga de distribuir la asignación de actividad.</textarea>
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Responsable"><input type="text"
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text-secondary);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Plazo"><input type="date"
+                                        style="font-family:'Montserrat',sans-serif;font-size:11px;border:none;outline:none;color:var(--text-muted);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" data-label="Hecho"><input
+                                        type="checkbox" style="width:15px;height:15px;accent-color:var(--color-500);">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" class="no-print">
+                                    <button onclick="this.closest('tr').remove()" class="btn-delete-row"
+                                        title="Eliminar acción" aria-label="Eliminar acción">
+                                        <i data-lucide="trash-2" class="lucide-icon lucide-icon-sm"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- 3 -->
+                            <tr style="border-bottom:1px solid var(--color-50);">
+                                <td style="padding:11px 12px;" data-label="Acción"><textarea
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:var(--text-primary);background:transparent;resize:none;"
+                                        rows="2">Salir con los misioneros - Misioneros preparados</textarea></td>
+                                <td style="padding:11px 12px;" data-label="Responsable"><input type="text"
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text-secondary);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Plazo"><input type="date"
+                                        style="font-family:'Montserrat',sans-serif;font-size:11px;border:none;outline:none;color:var(--text-muted);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" data-label="Hecho"><input
+                                        type="checkbox" style="width:15px;height:15px;accent-color:var(--color-500);">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" class="no-print">
+                                    <button onclick="this.closest('tr').remove()" class="btn-delete-row"
+                                        title="Eliminar acción" aria-label="Eliminar acción">
+                                        <i data-lucide="trash-2" class="lucide-icon lucide-icon-sm"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- 4 -->
+                            <tr style="border-bottom:1px solid var(--color-50);">
+                                <td style="padding:11px 12px;" data-label="Acción"><textarea
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:var(--text-primary);background:transparent;resize:none;"
+                                        rows="2">Fortalecer la enseñanza de los principios para los miembros</textarea>
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Responsable"><input type="text"
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text-secondary);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Plazo"><input type="date"
+                                        style="font-family:'Montserrat',sans-serif;font-size:11px;border:none;outline:none;color:var(--text-muted);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" data-label="Hecho"><input
+                                        type="checkbox" style="width:15px;height:15px;accent-color:var(--color-500);">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" class="no-print">
+                                    <button onclick="this.closest('tr').remove()" class="btn-delete-row"
+                                        title="Eliminar acción" aria-label="Eliminar acción">
+                                        <i data-lucide="trash-2" class="lucide-icon lucide-icon-sm"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- 5 -->
+                            <tr style="border-bottom:1px solid var(--color-50);">
+                                <td style="padding:11px 12px;" data-label="Acción"><textarea
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:var(--text-primary);background:transparent;resize:none;"
+                                        rows="2">Impartir cada domingo la clase principios del evangelio</textarea></td>
+                                <td style="padding:11px 12px;" data-label="Responsable"><input type="text"
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text-secondary);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Plazo"><input type="date"
+                                        style="font-family:'Montserrat',sans-serif;font-size:11px;border:none;outline:none;color:var(--text-muted);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" data-label="Hecho"><input
+                                        type="checkbox" style="width:15px;height:15px;accent-color:var(--color-500);">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" class="no-print">
+                                    <button onclick="this.closest('tr').remove()" class="btn-delete-row"
+                                        title="Eliminar acción" aria-label="Eliminar acción">
+                                        <i data-lucide="trash-2" class="lucide-icon lucide-icon-sm"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- 6 -->
+                            <tr style="border-bottom:1px solid var(--color-50);">
+                                <td style="padding:11px 12px;" data-label="Acción"><textarea
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:var(--text-primary);background:transparent;resize:none;"
+                                        rows="3">En cada reunion de consejo de barrio recibir dos referencias por organización, en el drive hay un documento.</textarea>
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Responsable"><input type="text"
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text-secondary);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Plazo"><input type="date"
+                                        style="font-family:'Montserrat',sans-serif;font-size:11px;border:none;outline:none;color:var(--text-muted);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" data-label="Hecho"><input
+                                        type="checkbox" style="width:15px;height:15px;accent-color:var(--color-500);">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" class="no-print">
+                                    <button onclick="this.closest('tr').remove()" class="btn-delete-row"
+                                        title="Eliminar acción" aria-label="Eliminar acción">
+                                        <i data-lucide="trash-2" class="lucide-icon lucide-icon-sm"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- 7 -->
+                            <tr style="border-bottom:1px solid var(--color-50);">
+                                <td style="padding:11px 12px;" data-label="Acción"><textarea
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:var(--text-primary);background:transparent;resize:none;"
+                                        rows="4">Que los misioneros tengan un documento donde estén las parejas ministrantes de cada hermano. Por trimestre ver que familias se van a enfocar para activar Q. Elderes y Soc. Soc. (6 familias).</textarea>
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Responsable"><input type="text"
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text-secondary);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Plazo"><input type="date"
+                                        style="font-family:'Montserrat',sans-serif;font-size:11px;border:none;outline:none;color:var(--text-muted);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" data-label="Hecho"><input
+                                        type="checkbox" style="width:15px;height:15px;accent-color:var(--color-500);">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" class="no-print">
+                                    <button onclick="this.closest('tr').remove()" class="btn-delete-row"
+                                        title="Eliminar acción" aria-label="Eliminar acción">
+                                        <i data-lucide="trash-2" class="lucide-icon lucide-icon-sm"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- 8 -->
+                            <tr style="border-bottom:1px solid var(--color-50);">
+                                <td style="padding:11px 12px;" data-label="Acción"><textarea
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:var(--text-primary);background:transparent;resize:none;"
+                                        rows="3">Calendario de las noches de hogar con los misioneros. La familia que tenga mas noches de hogar obtiene un presente.</textarea>
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Responsable"><input type="text"
+                                        style="width:100%;border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text-secondary);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;" data-label="Plazo"><input type="date"
+                                        style="font-family:'Montserrat',sans-serif;font-size:11px;border:none;outline:none;color:var(--text-muted);background:transparent;">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" data-label="Hecho"><input
+                                        type="checkbox" style="width:15px;height:15px;accent-color:var(--color-500);">
+                                </td>
+                                <td style="padding:11px 12px;text-align:center;" class="no-print">
+                                    <button onclick="this.closest('tr').remove()" class="btn-delete-row"
+                                        title="Eliminar acción" aria-label="Eliminar acción">
+                                        <i data-lucide="trash-2" class="lucide-icon lucide-icon-sm"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="no-print"
+                style="display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border);flex-wrap:wrap;gap:10px;">
+                <div style="display:flex;gap:16px;align-items:center;">
+                    <a href="https://www.churchofjesuschrist.org/study/manual/sharing-the-gospel-resources-for-leaders/02-effective-coordination-with-missionaries?lang=spa"
+                        target="_blank"
+                        style="font-size:10px;font-weight:600;color:var(--text-muted);text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;">Manual
+                        de Recursos</a>
+                    <span style="color:var(--border);">·</span>
+                    <a href="#"
+                        style="font-size:10px;font-weight:600;color:var(--text-muted);text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;">Drive
+                        del Barrio</a>
+                </div>
+                <p style="font-size:11px;font-weight:500;color:var(--text-muted);font-style:italic;">"Amad, Compartid e
+                    Invitad"</p>
+            </div>
+
+    </main>
+
+    <!-- ============================================
+         MODALES DE LIDERAZGO
+         ============================================ -->
+
+    <!-- Modal Info Plan -->
+    <div id="modal-info-plan" class="modal" onclick="closeModal(event)">
+        <div class="modal-container" style="max-width:500px;max-height:90vh;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-header-info">
+                    <div class="modal-header-icon">
+                        <i data-lucide="book-open" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <div class="modal-header-title">¿Qué es un Plan Misional?</div>
+                        <div class="modal-header-sub">Manual General · Sección 23.5.6</div>
+                    </div>
+                </div>
+                <div class="modal-header-actions">
+                    <button class="modal-close-btn" onclick="closeModal(null)" aria-label="Cerrar modal">
+                        <i data-lucide="x" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" style="padding:24px;">
+                <div style="font-size:13px;color:var(--text-secondary);line-height:1.75;">
+                    <p style="font-weight:700;color:var(--color-600);margin:0 0 10px;">Según el Manual General (Sección
+                        23.5.6):</p>
+                    <p style="margin:0 0 10px;">Cada barrio debe tener un plan misional del barrio <em>sencillo</em>.
+                        Ayuda al consejo de barrio y a los misioneros a trazar metas, coordinar esfuerzos y planificar
+                        actividades.</p>
+                    <p style="margin:0;">El plan es elaborado y aprobado en el consejo de barrio bajo la dirección del
+                        obispo, adaptado a las necesidades locales.</p>
+                </div>
+                <button onclick="closeModal(null)" class="btn-primary"
+                    style="width:100%;margin-top:20px;justify-content:center;">
+                    <i data-lucide="check" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Líder Misional -->
+    <div id="modal-lider" class="modal" onclick="closeModal(event)">
+        <div class="modal-container" style="max-width:500px;max-height:90vh;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-header-info">
+                    <div class="modal-header-icon">
+                        <i data-lucide="briefcase-business" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <div class="modal-header-title">Líder Misional de Barrio</div>
+                        <div class="modal-header-sub">Manual General · Sección 23.6.1</div>
+                    </div>
+                </div>
+                <div class="modal-header-actions">
+                    <button class="modal-close-btn" onclick="closeModal(null)" aria-label="Cerrar modal">
+                        <i data-lucide="x" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p
+                    style="font-size:10px;font-weight:700;color:var(--color-600);letter-spacing:0.1em;text-transform:uppercase;margin:0 0 12px;">
+                    Responsabilidades Principales</p>
+                <ul
+                    style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0 0 20px;">
+                    <li>Coordina la obra de miembros, líderes y misioneros de tiempo completo.</li>
+                    <li>Coordina la enseñanza, bautismos y retención de miembros nuevos.</li>
+                    <li>Planifica formas de ayudar a los miembros a compartir el Evangelio.</li>
+                    <li>Dirige las reuniones semanales de coordinación misional.</li>
+                    <li>Ayuda al Obispo a presentar hermanos en la senda de los convenios.</li>
+                </ul>
+                <button onclick="closeModal(null)" class="btn-primary" style="width:100%;justify-content:center;">
+                    <i data-lucide="check" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal QE / SS -->
+    <div id="modal-presidencias" class="modal" onclick="closeModal(event)">
+        <div class="modal-container" style="max-width:500px;max-height:90vh;" onclick="event.stopPropagation()">
+            <div class="modal-header" style="background:linear-gradient(135deg,#065F46,#059669);">
+                <div class="modal-header-info">
+                    <div class="modal-header-icon">
+                        <i data-lucide="users" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <div class="modal-header-title">Presidencias QE & Soc. Socorro</div>
+                        <div class="modal-header-sub">Manual General · Sección 23.6.2</div>
+                    </div>
+                </div>
+                <div class="modal-header-actions">
+                    <button class="modal-close-btn" onclick="closeModal(null)" aria-label="Cerrar modal">
+                        <i data-lucide="x" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p
+                    style="font-size:10px;font-weight:700;color:#059669;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 12px;">
+                    Responsabilidades</p>
+                <ul
+                    style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0 0 20px;">
+                    <li>Lideran los esfuerzos diarios de compartir el Evangelio.</li>
+                    <li>Aseguran que la información de miembros se actualice oportunamente.</li>
+                    <li>Determinan quién actualizará Progreso en la senda de los convenios.</li>
+                    <li>Asignan ministrantes a miembros nuevos y que regresan.</li>
+                </ul>
+                <button onclick="closeModal(null)"
+                    style="width:100%;background:#059669;color:white;border:none;padding:11px;border-radius:99px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+                    <i data-lucide="check" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Misioneros Barrio -->
+    <div id="modal-misioneros-barrio" class="modal" onclick="closeModal(event)">
+        <div class="modal-container" style="max-width:500px;max-height:90vh;" onclick="event.stopPropagation()">
+            <div class="modal-header" style="background:linear-gradient(135deg,#92400E,#D97706);">
+                <div class="modal-header-info">
+                    <div class="modal-header-icon">
+                        <i data-lucide="house" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <div class="modal-header-title">Misioneros de Barrio</div>
+                        <div class="modal-header-sub">Manual General · Sección 23.6.3</div>
+                    </div>
+                </div>
+                <div class="modal-header-actions">
+                    <button class="modal-close-btn" onclick="closeModal(null)" aria-label="Cerrar modal">
+                        <i data-lucide="x" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p
+                    style="font-size:10px;font-weight:700;color:#D97706;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 12px;">
+                    Responsabilidades</p>
+                <ul
+                    style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0 0 20px;">
+                    <li>Ayudan a los miembros a experimentar el gozo de compartir el Evangelio.</li>
+                    <li>Enseñan mediante el ejemplo cómo amar e invitar a los demás.</li>
+                    <li>Ministran a los miembros nuevos y que regresan.</li>
+                    <li>Participan en las reuniones semanales de coordinación.</li>
+                </ul>
+                <button onclick="closeModal(null)"
+                    style="width:100%;background:#D97706;color:white;border:none;padding:11px;border-radius:99px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+                    <i data-lucide="check" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Jóvenes -->
+    <div id="modal-jovenes" class="modal" onclick="closeModal(event)">
+        <div class="modal-container" style="max-width:500px;max-height:90vh;" onclick="event.stopPropagation()">
+            <div class="modal-header" style="background:linear-gradient(135deg,#4C1D95,#7C3AED);">
+                <div class="modal-header-info">
+                    <div class="modal-header-icon">
+                        <i data-lucide="zap" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <div class="modal-header-title">Líderes de Jóvenes</div>
+                        <div class="modal-header-sub">Ayudante Pres. QP / Miembro Pres. MJ</div>
+                    </div>
+                </div>
+                <div class="modal-header-actions">
+                    <button class="modal-close-btn" onclick="closeModal(null)" aria-label="Cerrar modal">
+                        <i data-lucide="x" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p
+                    style="font-size:10px;font-weight:700;color:#7C3AED;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 12px;">
+                    Participación en la Obra</p>
+                <ul
+                    style="font-size:13px;color:var(--text-secondary);line-height:1.8;padding-left:18px;margin:0 0 20px;">
+                    <li>Representan a la juventud del barrio en la obra misional.</li>
+                    <li>Coordinan esfuerzos para invitar amigos a actividades.</li>
+                    <li>Apoyan en la retención de jóvenes conversos recientes.</li>
+                </ul>
+                <button onclick="closeModal(null)"
+                    style="width:100%;background:#7C3AED;color:white;border:none;padding:11px;border-radius:99px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+                    <i data-lucide="check" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         PÁGINA: AGENDA DE COORDINACIÓN
+         ============================================ -->
+    <section id="page-agenda-coordinacion" class="app-view subpage-main agenda-page-view"
+        data-view="agenda-coordinacion" hidden>
+        <div class="page-header no-print agenda-page-header">
+            <div>
+                <div class="agenda-page-back-row">
+                    <a href="index.html" class="btn-secondary agenda-back-link">
+                        <i data-lucide="arrow-left" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                        Volver al panel
+                    </a>
+                </div>
+                <h1>Agenda de Coordinación Misional</h1>
+                <p>Completa la reunión semanal, da seguimiento a las personas en la senda de los convenios y exporta el documento cuando esté listo.</p>
+                <div class="page-meta">
+                    <span>
+                        <i data-lucide="calendar-range" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                        Reunión semanal
+                    </span>
+                    <span>
+                        <i data-lucide="users-round" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                        Barrio / Rama
+                    </span>
+                    <span>
+                        <i data-lucide="file-text" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                        Documento exportable
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="agenda-page-shell" data-export-root>
+            <div class="institucional-header">
+                <div
+                    style="font-size:10pt;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6pt;font-weight:600;">
+                    La Iglesia de Jesucristo de los Santos de los Últimos Días</div>
+                <div class="print-title"
+                    style="font-size:22pt;text-transform:uppercase;letter-spacing:0.04em;margin:12pt 0;font-weight:800;">
+                    Agenda de Coordinación Misional</div>
+                <div
+                    style="display:flex;justify-content:center;gap:30pt;margin-top:15pt;font-size:11pt;font-weight:500;">
+                    <span>Barrio / Rama: _______________________</span>
+                    <span>Fecha: _______________________</span>
+                </div>
+            </div>
+
+            <div class="modal-header no-print" style="background:linear-gradient(135deg,#002F75,#0066FF);">
+                <div class="modal-header-info">
+                    <div class="modal-header-icon">
+                        <i data-lucide="calendar-days" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <div class="modal-header-title">Agenda de Coordinación Misional</div>
+                        <div class="modal-header-sub">Reunión Semanal · Barrio / Rama</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="agenda-section">
+                    <div class="agenda-section-header" style="border-left-color:#94A3B8;background:#F8FAFC;">
+                        <div class="agenda-section-number" style="background:#94A3B8;">0</div>
+                        <div class="agenda-section-title" style="color:#475569;">Repaso de Compromisos Anteriores</div>
+                    </div>
+                    <div class="agenda-section-body">
+                        <label class="field-label">Seguimiento de asignaciones previas</label>
+                        <textarea class="input-underlined" rows="2" style="resize:none;"></textarea>
+                    </div>
+                </div>
+
+                <div class="agenda-section">
+                    <div class="agenda-section-header">
+                        <div class="agenda-section-number">1</div>
+                        <div class="agenda-section-title">Apertura y Pensamiento Espiritual</div>
+                        <span class="agenda-section-time">2 min</span>
+                    </div>
+                    <div class="agenda-section-body">
+                        <div class="field-group cols-2">
+                            <div>
+                                <label class="field-label">Quien ora</label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                            <div>
+                                <label class="field-label">Fecha y Hora</label>
+                                <input type="datetime-local" class="input-underlined">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="field-label">Pensamiento espiritual (PME o escritura)</label>
+                            <textarea class="input-underlined" rows="2" style="resize:none;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agenda-section">
+                    <div class="agenda-section-header">
+                        <div class="agenda-section-number">2</div>
+                        <div class="agenda-section-title">Personas en la Senda de los Convenios</div>
+                        <span class="agenda-section-time">10 min</span>
+                    </div>
+                    <div class="agenda-section-body">
+                        <div style="font-size:11px;color:var(--text-muted);margin-bottom:12px;font-weight:500;">
+                            Amigos (Investigadores), Miembros Nuevos y Miembros que Regresan
+                        </div>
+                        <div id="agenda-amigos-modal"
+                            style="display:flex;flex-direction:column;gap:10px;margin-bottom:10px;"></div>
+                        <button class="btn-add-card no-print" onclick="addAmigoItemModal()">
+                            <i data-lucide="plus" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                            Añadir ficha de seguimiento
+                        </button>
+                    </div>
+                </div>
+
+                <div class="agenda-section">
+                    <div class="agenda-section-header">
+                        <div class="agenda-section-number">3</div>
+                        <div class="agenda-section-title">Planificación de Ordenanzas</div>
+                        <span class="agenda-section-time">3 min</span>
+                    </div>
+                    <div class="agenda-section-body">
+                        <div class="field-group cols-2">
+                            <div>
+                                <label class="field-label">Candidato</label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                            <div>
+                                <label class="field-label">Fecha propuesta</label>
+                                <input type="date" class="input-underlined">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="field-label">Logística (música, discursos, pila, entrevista)</label>
+                            <textarea class="input-underlined" rows="2" style="resize:none;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agenda-section">
+                    <div class="agenda-section-header">
+                        <div class="agenda-section-number">4</div>
+                        <div class="agenda-section-title">Amar, Compartir e Invitar</div>
+                        <span class="agenda-section-time">5 min</span>
+                    </div>
+                    <div class="agenda-section-body">
+                        <div style="display:grid;gap:10px;">
+                            <div
+                                style="background:var(--color-50);border-radius:10px;padding:14px;border:1px solid var(--color-100);">
+                                <label class="field-label"
+                                    style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+                                    <i data-lucide="heart" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                                    JustServe y Actividades
+                                </label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                            <div style="background:#FFFBEB;border-radius:10px;padding:14px;border:1px solid #FDE68A;">
+                                <label class="field-label"
+                                    style="display:flex;align-items:center;gap:6px;margin-bottom:8px;color:#92400E;">
+                                    <i data-lucide="link" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                                    Referencias y Misioneros de Barrio
+                                </label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agenda-section">
+                    <div class="agenda-section-header">
+                        <div class="agenda-section-number">5</div>
+                        <div class="agenda-section-title">Compromisos y Oración de Cierre</div>
+                        <span class="agenda-section-time">2 min</span>
+                    </div>
+                    <div class="agenda-section-body">
+                        <label class="field-label">Resumen de asignaciones</label>
+                        <textarea class="input-underlined" rows="2" style="resize:none;font-weight:600;"></textarea>
+                        <div style="margin-top:12px;">
+                            <label class="field-label">Quien ora al cierre</label>
+                            <input type="text" class="input-underlined">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PÁGINA: AGENDA BAUTISMAL -->
+    <section id="page-agenda-bautismo" class="app-view subpage-main agenda-page-view" data-view="agenda-bautismo"
+        hidden>
+        <div class="page-header no-print agenda-page-header">
+            <div>
+                <div class="agenda-page-back-row">
+                    <a href="index.html" class="btn-secondary agenda-back-link">
+                        <i data-lucide="arrow-left" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                        Volver al plan misional
+                    </a>
+                </div>
+                <h1>Agenda Bautismal</h1>
+                <p>Organiza el servicio con una plantilla limpia, editable y lista para generar su PDF final.</p>
+                <div class="page-meta">
+                    <span>
+                        <i data-lucide="droplets" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                        Ordenanza sagrada
+                    </span>
+                    <span>
+                        <i data-lucide="clock-3" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                        Programa del servicio
+                    </span>
+                    <span>
+                        <i data-lucide="file-badge" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
+                        Exportable a PDF
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="agenda-page-shell" data-export-root>
+            <div class="institucional-header">
+                <div style="font-size:9pt;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4pt;">La Iglesia
+                    de Jesucristo de los Santos de los Últimos Días</div>
+            </div>
+
+            <div class="modal-header no-print" style="background:linear-gradient(135deg,#002F75,#0066FF);">
+                <div class="modal-header-info">
+                    <div class="modal-header-icon">
+                        <i data-lucide="droplet" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <div class="modal-header-title">Agenda Bautismal</div>
+                        <div class="modal-header-sub">Ordenanza Sagrada · Barrio / Rama</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="agenda-section">
+                    <div class="agenda-section-header">
+                        <div class="agenda-section-number">1</div>
+                        <div class="agenda-section-title">Información de la Ordenanza</div>
+                    </div>
+                    <div class="agenda-section-body">
+                        <div style="margin-bottom:15px;">
+                            <label class="field-label">Nombre del candidato</label>
+                            <input type="text" class="input-underlined"
+                                style="font-size:18px;font-weight:700;color:var(--color-700);">
+                        </div>
+                        <div class="field-group cols-3">
+                            <div>
+                                <label class="field-label">Barrio / Rama</label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                            <div>
+                                <label class="field-label">Fecha</label>
+                                <input type="date" class="input-underlined">
+                            </div>
+                            <div>
+                                <label class="field-label">Hora</label>
+                                <input type="time" class="input-underlined">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agenda-section">
+                    <div class="agenda-section-header">
+                        <div class="agenda-section-number">2</div>
+                        <div class="agenda-section-title">Apertura del Servicio</div>
+                    </div>
+                    <div class="agenda-section-body">
+                        <div class="field-group cols-2">
+                            <div>
+                                <label class="field-label">Dirige</label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                            <div>
+                                <label class="field-label">Himno inicial</label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                        </div>
+                        <div class="field-group cols-2" style="margin-top:12px;">
+                            <div>
+                                <label class="field-label">Primera oración</label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                            <div>
+                                <label class="field-label">Música (pianista / director)</label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agenda-section" style="border-left-color:#0066FF;">
+                    <div class="agenda-section-header" style="background:var(--color-50);">
+                        <div class="agenda-section-number">3</div>
+                        <div class="agenda-section-title">Enseñanza y Ordenanza</div>
+                    </div>
+                    <div class="agenda-section-body">
+                        <div>
+                            <label class="field-label">Mensaje sobre el bautismo (discursante)</label>
+                            <input type="text" class="input-underlined">
+                        </div>
+
+                        <div
+                            style="margin:20px 0;padding:15px;background:var(--color-50);border-radius:12px;border:1px dashed var(--color-200);text-align:center;">
+                            <div
+                                style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-600);margin-bottom:5px;">
+                                Acto Sagrado</div>
+                            <div
+                                style="font-size:16px;font-weight:800;color:var(--color-900);display:flex;align-items:center;justify-content:center;gap:10px;">
+                                <i data-lucide="droplet" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
+                                Ordenanza del Bautismo
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="field-label">Mensaje sobre el Espíritu Santo (discursante)</label>
+                            <input type="text" class="input-underlined">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agenda-section">
+                    <div class="agenda-section-header">
+                        <div class="agenda-section-number">4</div>
+                        <div class="agenda-section-title">Cierre del Servicio</div>
+                    </div>
+                    <div class="agenda-section-body">
+                        <div class="field-group cols-2">
+                            <div>
+                                <label class="field-label">Himno final</label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                            <div>
+                                <label class="field-label">Última oración</label>
+                                <input type="text" class="input-underlined">
+                            </div>
+                        </div>
+                        <div style="margin-top:12px;">
+                            <label class="field-label">Observaciones y asignaciones</label>
+                            <textarea class="input-underlined" rows="3" style="resize:vertical;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agenda-section">
+                    <div class="agenda-section-header" style="border-left-color:#94A3B8;background:#F8FAFC;">
+                        <div class="agenda-section-number" style="background:#94A3B8;">5</div>
+                        <div class="agenda-section-title" style="color:#475569;">Preparación</div>
+                    </div>
+                    <div class="agenda-section-body" style="text-align:center;padding:25px 15px;">
+                        <p style="font-size:14px;color:var(--text-secondary);font-style:italic;line-height:1.7;max-width:520px;margin:0 auto;">
+                            Recordar a los participantes traer ropa blanca, prendas adicionales y toallas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="app-toast" class="app-toast no-print" role="status" aria-live="polite"></div>
+
+    <!-- Librerías Externas -->
+    <script src="lucide.min.js"></script>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

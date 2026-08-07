@@ -7,21 +7,31 @@
     <title>Herramientas SUD</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css?v=20260806g">
 </head>
 
 <body class="pb-20">
 
-    <nav class="bg-[#002e5d] text-white sticky top-0 z-50 no-print shadow-md">
+    <nav class="app-nav bg-[#002e5d] text-white sticky top-0 z-50 no-print shadow-md">
         <div class="max-w-4xl mx-auto px-4 h-16 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <i data-lucide="key" class="w-5 h-5 text-blue-300"></i>
                 <span class="font-black text-sm tracking-tighter uppercase">Herramientas SUD</span>
             </div>
-            <button onclick="showMenu()" class="btn-base bg-white/10 hover:bg-white/20 px-4">
-                <i data-lucide="layout-grid" class="w-4 h-4 mr-2"></i> Inicio
-            </button>
+            <div class="flex items-center gap-2">
+                <button id="theme-toggle" type="button" class="theme-toggle" onclick="toggleTheme()"
+                    aria-label="Activar modo oscuro" title="Cambiar tema">
+                    <i data-lucide="moon" class="theme-icon-moon w-4 h-4"></i>
+                    <i data-lucide="sun" class="theme-icon-sun w-4 h-4"></i>
+                </button>
+                <button onclick="showMenu()" class="btn-base nav-home bg-white/10 hover:bg-white/20 px-4">
+                    <i data-lucide="layout-grid" class="w-4 h-4 mr-2"></i> Inicio
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -29,14 +39,29 @@
 
         <!-- MENÚ PRINCIPAL -->
         <div id="main-menu" class="space-y-6">
-            <header class="text-center space-y-2 mb-10">
-                <h1 class="text-3xl font-black text-slate-800 tracking-tighter uppercase">Panel de Control</h1>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">Menos gestión, más servicio.
-                </p>
+            <header class="dashboard-hero mb-10">
+                <div class="dashboard-hero-copy">
+                    <span class="dashboard-hero-eyebrow"><i data-lucide="sparkles"></i> Espacio de servicio</span>
+                    <h1 class="text-3xl font-black tracking-tighter uppercase">Todo lo que necesitas para servir mejor.</h1>
+                    <p>Organiza recursos, reuniones y planes del barrio desde un solo lugar.</p>
+                    <div class="dashboard-hero-summary" aria-label="Contenido disponible">
+                        <span><strong>4</strong> herramientas</span>
+                        <span><strong>5</strong> agendas</span>
+                        <span><i data-lucide="file-check-2"></i> PDFs listos</span>
+                    </div>
+                </div>
+                <div class="dashboard-hero-media" aria-hidden="true">
+                    <img src="assets/images/community-planning-hero.png" alt="" fetchpriority="high">
+                    <div class="dashboard-hero-note">
+                        <span class="dashboard-hero-note-icon"><i data-lucide="heart-handshake"></i></span>
+                        <span><small>Un propósito compartido</small><strong>Planificar · Servir · Crecer</strong></span>
+                    </div>
+                </div>
             </header>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div onclick="openTool('presupuesto-tool')"
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div onclick="openTool('presupuesto-tool')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTool('presupuesto-tool')}"
+                    role="button" tabindex="0"
                     class="glass-card p-6 cursor-pointer hover:border-emerald-400 transition-all">
                     <div
                         class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4">
@@ -47,7 +72,8 @@
                         actividad.</p>
                 </div>
 
-                <div onclick="openTool('planificador-tool')"
+                <div onclick="openTool('planificador-tool')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTool('planificador-tool')}"
+                    role="button" tabindex="0"
                     class="glass-card p-6 cursor-pointer hover:border-emerald-400 transition-all">
                     <div
                         class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4">
@@ -57,15 +83,25 @@
                     <p class="text-xs text-slate-500 leading-relaxed">Metas e indicadores por organización.</p>
                 </div>
 
-                <div onclick="openCallings()"
+                <div onclick="openCallings()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCallings()}"
+                    role="button" tabindex="0"
                     class="glass-card p-6 cursor-pointer hover:border-blue-400 transition-all">
-                    <div
-                        class="w-12 h-12 bg-blue-50 text-blue-700 rounded-2xl flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-700 rounded-2xl flex items-center justify-center mb-4">
                         <i data-lucide="book-open"></i>
                     </div>
                     <h3 class="font-black uppercase text-sm mb-1">Guía de Llamamientos</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Obligaciones y responsabilidades según el Manual General.</p>
+                    <p class="text-xs text-slate-500 leading-relaxed">Obligaciones y responsabilidades según el Manual
+                        General.</p>
                 </div>
+
+                <a href="obra-misional/index.html"
+                    class="glass-card p-6 cursor-pointer hover:border-blue-400 transition-all block">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-700 rounded-2xl flex items-center justify-center mb-4">
+                        <i data-lucide="send"></i>
+                    </div>
+                    <h3 class="font-black uppercase text-sm mb-1">Obra Misional</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Plan misional, metas, coordinación y matriz de acciones.</p>
+                </a>
             </div>
 
             <div class="pt-4">
@@ -77,32 +113,27 @@
                 </div>
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
                     <button onclick="openSacramentalAgenda('Normal')"
-                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                        class="glass-card p-4 agenda-menu-button font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="mic" class="w-5 h-5 text-blue-600"></i>
                         <span>Sacramental</span>
                     </button>
                     <button onclick="openSacramentalAgenda('Testimonios')"
-                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                        class="glass-card p-4 agenda-menu-button font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="heart" class="w-5 h-5 text-rose-600"></i>
                         <span>Testimonios</span>
                     </button>
                     <button onclick="openObispadoAgenda()"
-                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                        class="glass-card p-4 agenda-menu-button font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="shield" class="w-5 h-5 text-slate-700"></i>
                         <span>Obispado</span>
                     </button>
                     <button onclick="openCouncilAgenda()"
-                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                        class="glass-card p-4 agenda-menu-button font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="users" class="w-5 h-5 text-emerald-700"></i>
                         <span>Consejo Barrio</span>
                     </button>
-                    <button onclick="openBaptismAgenda()"
-                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
-                        <i data-lucide="droplets" class="w-5 h-5 text-cyan-600"></i>
-                        <span>Bautismo</span>
-                    </button>
                     <button onclick="openGenericAgenda('Otras')"
-                        class="glass-card p-4 text-[10px] font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
+                        class="glass-card p-4 agenda-menu-button font-bold uppercase flex flex-col items-center space-y-2 hover:bg-slate-50">
                         <i data-lucide="file-text" class="w-5 h-5 text-slate-400"></i>
                         <span>Genérica</span>
                     </button>
@@ -147,9 +178,11 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div><span class="doc-label">Número de Personas Esperado</span><input type="number"
-                                id="num-personas-input" class="doc-input" placeholder="Ej. 100" oninput="calculateBudget(true)"></div>
+                                id="num-personas-input" class="doc-input" placeholder="Ej. 100"
+                                oninput="calculateBudget(true)"></div>
                         <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 flex justify-between items-center">
-                            <span class="doc-label text-blue-800 mb-0 text-[10px] uppercase font-black">Costo p/Persona</span>
+                            <span class="doc-label text-blue-800 mb-0 text-[10px] uppercase font-black">Costo
+                                p/Persona</span>
                             <div class="font-black text-blue-900 text-lg">
                                 Q <span id="cost-per-person">0.00</span>
                             </div>
@@ -329,7 +362,8 @@
 
             <!-- Buscador -->
             <div class="mb-4 relative">
-                <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
+                <i data-lucide="search"
+                    class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"></i>
                 <input type="text" id="calling-search" placeholder="Buscar llamamiento u obligación..."
                     class="doc-input pl-10" oninput="filterCallings(this.value)">
             </div>
@@ -350,7 +384,7 @@
             </div>
         </div>
     </main>
-    <script src="js/app.js"></script>
+    <script src="js/app.js?v=20260806g"></script>
 
 </body>
 
