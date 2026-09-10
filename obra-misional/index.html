@@ -46,14 +46,13 @@
                     <i data-lucide="sun-moon" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
                 </button>
                 <span class="nav-action-divider" aria-hidden="true"></span>
-                <button onclick="savePlanData()" class="btn-secondary nav-save nav-save-accent" aria-label="Guardar datos"
-                    style="font-size:11px;padding:8px 16px;">
+                <button onclick="savePlanData()" class="btn-secondary nav-save nav-save-accent"
+                    aria-label="Guardar datos" style="font-size:11px;padding:8px 16px;">
                     <i data-lucide="save" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
                     Guardar
                 </button>
                 <button onclick="exportCurrentView()" class="btn-primary nav-export nav-export-accent"
-                    aria-label="Generar PDF"
-                    style="font-size:11px;padding:8px 16px;">
+                    aria-label="Generar PDF" style="font-size:11px;padding:8px 16px;">
                     <i data-lucide="download" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
                     Generar PDF
                 </button>
@@ -77,10 +76,10 @@
 
         <section class="mission-hero no-print" aria-labelledby="mission-hero-title">
             <div class="mission-hero-media" aria-hidden="true">
-                <img src="../assets/images/community-planning-hero.png" alt="">
+                <img src="../assets/images/john_baptizing_jesus_christ_jordan.webp" alt="">
             </div>
             <div class="mission-hero-copy">
-                <span class="mission-hero-kicker"><i data-lucide="map-pin"></i> Barrio Milagro · Estaca Milagro</span>
+                <span class="mission-hero-kicker"><i data-lucide="map-pin"></i>BARRIO MILAGRO</span>
                 <h1 id="mission-hero-title">Una visión compartida. Un plan que se convierte en acción.</h1>
                 <p>Alineamos líderes, miembros y misioneros para acompañar a cada persona con propósito y amor.</p>
                 <div class="mission-hero-tags" aria-label="Enfoques del plan">
@@ -107,7 +106,8 @@
                 style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:32px;">
 
                 <div class="card metric-card metric-card-blue" style="padding:22px;border-top:3px solid #0066FF;">
-                    <div class="metric-card-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                    <div class="metric-card-head"
+                        style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
                         <div>
                             <div class="section-label" style="color:#0066FF;">Bautismos</div>
                             <div style="font-size:10px;color:var(--text-muted);margin-top:2px;font-weight:500;">Meta
@@ -118,18 +118,22 @@
                             <i data-lucide="droplet" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <div class="metric-card-value-row" style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
+                    <div class="metric-card-value-row"
+                        style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
                         <input type="number" id="val-bautismos" value="4" oninput="updateProgress('bautismos',18)"
                             style="font-size:38px;font-weight:900;color:var(--color-950);width:65px;border:none;outline:none;background:transparent;font-family:'Montserrat',sans-serif;">
-                        <span class="metric-card-target" style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 18</span>
+                        <span class="metric-card-target"
+                            style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 18</span>
                     </div>
                     <div class="progress-bar">
-                        <div id="bar-bautismos" class="progress-fill metric-progress metric-progress-blue" style="width:22%"></div>
+                        <div id="bar-bautismos" class="progress-fill metric-progress metric-progress-blue"
+                            style="width:22%"></div>
                     </div>
                 </div>
 
                 <div class="card metric-card metric-card-green" style="padding:22px;border-top:3px solid #059669;">
-                    <div class="metric-card-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                    <div class="metric-card-head"
+                        style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
                         <div>
                             <div class="section-label" style="color:#059669;">Lecciones con Miembro</div>
                             <div style="font-size:10px;color:var(--text-muted);margin-top:2px;font-weight:500;">Meta
@@ -140,10 +144,12 @@
                             <i data-lucide="book-open" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <div class="metric-card-value-row" style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
+                    <div class="metric-card-value-row"
+                        style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
                         <input type="number" id="val-lecciones" value="8" oninput="updateProgress('lecciones',12)"
                             style="font-size:38px;font-weight:900;color:var(--color-950);width:65px;border:none;outline:none;background:transparent;font-family:'Montserrat',sans-serif;">
-                        <span class="metric-card-target" style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 12</span>
+                        <span class="metric-card-target"
+                            style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 12</span>
                     </div>
                     <div class="progress-bar">
                         <div id="bar-lecciones" class="progress-fill metric-progress metric-progress-green"
@@ -152,7 +158,8 @@
                 </div>
 
                 <div class="card metric-card metric-card-amber" style="padding:22px;border-top:3px solid #D97706;">
-                    <div class="metric-card-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                    <div class="metric-card-head"
+                        style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
                         <div>
                             <div class="section-label" style="color:#D97706;">Referencias</div>
                             <div style="font-size:10px;color:var(--text-muted);margin-top:2px;font-weight:500;">2 por
@@ -162,10 +169,12 @@
                             <i data-lucide="user-plus" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <div class="metric-card-value-row" style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
+                    <div class="metric-card-value-row"
+                        style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
                         <input type="number" id="val-ref" value="0" oninput="updateProgress('ref',10)"
                             style="font-size:38px;font-weight:900;color:var(--color-950);width:65px;border:none;outline:none;background:transparent;font-family:'Montserrat',sans-serif;">
-                        <span class="metric-card-target" style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 10</span>
+                        <span class="metric-card-target"
+                            style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 10</span>
                     </div>
                     <div class="progress-bar">
                         <div id="bar-ref" class="progress-fill metric-progress metric-progress-amber"
@@ -174,7 +183,8 @@
                 </div>
 
                 <div class="card metric-card metric-card-slate" style="padding:22px;border-top:3px solid #64748B;">
-                    <div class="metric-card-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                    <div class="metric-card-head"
+                        style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
                         <div>
                             <div class="section-label" style="color:#475569;">Asistencia Sacramental</div>
                             <div style="font-size:10px;color:var(--text-muted);margin-top:2px;font-weight:500;">Meta
@@ -185,10 +195,12 @@
                             <i data-lucide="users-round" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <div class="metric-card-value-row" style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
+                    <div class="metric-card-value-row"
+                        style="display:flex;align-items:baseline;gap:6px;margin-bottom:10px;">
                         <input type="number" id="val-asistencia" value="0" oninput="updateProgress('asistencia',150)"
                             style="font-size:38px;font-weight:900;color:var(--color-950);width:82px;border:none;outline:none;background:transparent;font-family:Inter,sans-serif;">
-                        <span class="metric-card-target" style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 150</span>
+                        <span class="metric-card-target"
+                            style="font-size:15px;font-weight:500;color:var(--text-muted);">/ 150</span>
                     </div>
                     <div class="progress-bar">
                         <div id="bar-asistencia" class="progress-fill metric-progress metric-progress-slate"
@@ -243,32 +255,42 @@
         </section>
 
         <!-- AGENDAS -->
-        <section id="section-agendas" style="margin-bottom:28px;">
+        <section id="section-agendas" style="margin-bottom:28px;" class="no-print">
             <div class="card" style="padding:28px;">
                 <div style="margin-bottom:24px;">
                     <h2 class="section-label">Agendas de Reuniones</h2>
                     <div class="section-subtitle" style="margin-top:4px;">Selecciona para llenar y exportar a PDF</div>
                 </div>
-                <div class="agenda-card-grid">
-
-                    <a class="agenda-card agenda-card-link" href="index.html?page=agenda-coordinacion"
-                        aria-label="Abrir página de Agenda de Coordinación Misional">
-                        <div class="agenda-card-icon">
-                            <i data-lucide="calendar-days" class="lucide-icon lucide-icon-lg" aria-hidden="true"></i>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                    <a href="index.html?page=agenda-coordinacion"
+                        aria-label="Abrir página de Agenda de Coordinación Misional"
+                        class="card group flex flex-col items-center justify-center transition-all duration-300 hover:border-blue-200"
+                        style="text-decoration:none; min-height:130px; padding: 20px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.02); background: var(--surface);">
+                        <div class="transition-colors duration-300"
+                            style="background-color: rgba(0, 102, 255, 0.08); padding: 12px; border-radius: 50%; margin-bottom: 12px;">
+                            <i data-lucide="calendar-days" class="w-6 h-6" style="color: #0066FF;"></i>
                         </div>
-                        <div class="agenda-card-title">Coord. Misional</div>
-                        <div class="agenda-card-sub">Reunión semanal</div>
-                    </a>
-
-                    <a class="agenda-card agenda-card-link" href="index.html?page=agenda-bautismo"
-                        aria-label="Abrir página de Agenda Bautismal">
-                        <div class="agenda-card-icon">
-                            <i data-lucide="droplet" class="lucide-icon lucide-icon-lg" aria-hidden="true"></i>
+                        <div class="text-center">
+                            <span class="block font-bold uppercase tracking-wider mb-1"
+                                style="font-size: 11px; color:var(--text-primary);">Coord. Misional</span>
+                            <span class="block font-medium" style="font-size: 9px; color:var(--text-muted);">Reunión
+                                Semanal</span>
                         </div>
-                        <div class="agenda-card-title">Agenda Bautismal</div>
-                        <div class="agenda-card-sub">Programa del servicio</div>
                     </a>
-
+                    <a href="index.html?page=agenda-bautismo" aria-label="Abrir página de Agenda Bautismal"
+                        class="card group flex flex-col items-center justify-center transition-all duration-300 hover:border-blue-200"
+                        style="text-decoration:none; min-height:130px; padding: 20px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.02); background: var(--surface);">
+                        <div class="transition-colors duration-300"
+                            style="background-color: rgba(0, 102, 255, 0.08); padding: 12px; border-radius: 50%; margin-bottom: 12px;">
+                            <i data-lucide="droplet" class="w-6 h-6" style="color: #0066FF;"></i>
+                        </div>
+                        <div class="text-center">
+                            <span class="block font-bold uppercase tracking-wider mb-1"
+                                style="font-size: 11px; color:var(--text-primary);">Agenda Bautismal</span>
+                            <span class="block font-medium" style="font-size: 9px; color:var(--text-muted);">Servicio de
+                                Ordenanza</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -712,361 +734,173 @@
          ============================================ -->
     <section id="page-agenda-coordinacion" class="app-view subpage-main agenda-page-view"
         data-view="agenda-coordinacion" hidden>
-        <div class="page-header no-print agenda-page-header">
-            <div>
-                <div class="agenda-page-back-row">
-                    <a href="index.html" class="btn-secondary agenda-back-link">
-                        <i data-lucide="arrow-left" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                        Volver al panel
-                    </a>
+        <div class="no-print flex justify-between mb-4 mt-6">
+            <a href="index.html" class="btn-base btn-ghost" style="text-decoration:none;">
+                <i data-lucide="chevron-left" class="lucide-icon lucide-icon-sm mr-1" aria-hidden="true"></i> Volver
+            </a>
+            <button onclick="exportCurrentView()" class="btn-base btn-primary">Descargar PDF</button>
+        </div>
+
+        <div id="agenda-coordinacion-content" class="glass-card print-container p-6 md:p-10">
+            <div id="agenda-header" class="border-b-2 border-slate-100 pb-4 mb-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                    <div class="flex-1">
+                        <h2 class="text-xl font-black text-blue-900 uppercase leading-tight">Coordinación Misional</h2>
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Barrio
+                            Milagro • Estaca Milagro</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="text-left md:text-right w-full md:w-auto">
+                            <span class="doc-label">Fecha</span>
+                            <input type="date" class="doc-input w-full md:w-32 font-bold text-left md:text-right">
+                        </div>
+                    </div>
                 </div>
-                <h1>Agenda de Coordinación Misional</h1>
-                <p>Completa la reunión semanal, da seguimiento a las personas en la senda de los convenios y exporta el documento cuando esté listo.</p>
-                <div class="page-meta">
-                    <span>
-                        <i data-lucide="calendar-range" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                        Reunión semanal
-                    </span>
-                    <span>
-                        <i data-lucide="users-round" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                        Barrio / Rama
-                    </span>
-                    <span>
-                        <i data-lucide="file-text" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                        Documento exportable
-                    </span>
+            </div>
+
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div><span class="doc-label">Dirige</span><input type="text" class="doc-input"></div>
+                    <div><span class="doc-label">Oración Inicial</span><input type="text" class="doc-input"></div>
+                </div>
+
+                <div class="agenda-box">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="doc-label text-blue-800">1. Asistentes (Presidencia, Obispado, Líderes)</span>
+                        <button onclick="addPointToAgenda('asist-list', 'Nombre...')"
+                            class="no-print text-[7px] font-black bg-white px-2 py-1 rounded shadow-sm">+
+                            AGREGAR</button>
+                    </div>
+                    <div id="asist-list" class="space-y-2"></div>
+                </div>
+
+                <div class="agenda-box">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="doc-label text-blue-800">2. Repaso de Compromisos</span>
+                        <button onclick="addPointToAgenda('repaso-list', 'Compromiso...')"
+                            class="no-print text-[7px] font-black bg-white px-2 py-1 rounded shadow-sm">+
+                            AGREGAR</button>
+                    </div>
+                    <div id="repaso-list" class="space-y-2"></div>
+                </div>
+
+                <div class="agenda-box">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="doc-label text-blue-800">3. Planificación de Ordenanzas</span>
+                        <button onclick="addPointToAgenda('ord-list', 'Candidato y fecha...')"
+                            class="no-print text-[7px] font-black bg-white px-2 py-1 rounded shadow-sm">+
+                            AGREGAR</button>
+                    </div>
+                    <div id="ord-list" class="space-y-2"></div>
+                </div>
+
+                <div class="agenda-box">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="doc-label text-blue-800">4. Amar, Compartir e Invitar</span>
+                        <button onclick="addPointToAgenda('amar-list', 'Acción...')"
+                            class="no-print text-[7px] font-black bg-white px-2 py-1 rounded shadow-sm">+
+                            AGREGAR</button>
+                    </div>
+                    <div id="amar-list" class="space-y-2"></div>
+                </div>
+
+                <div class="agenda-box">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="doc-label text-blue-800">5. Compromisos y Asignaciones Nuevas</span>
+                        <button onclick="addPointToAgenda('comp-list', 'Asignación...')"
+                            class="no-print text-[7px] font-black bg-white px-2 py-1 rounded shadow-sm">+
+                            AGREGAR</button>
+                    </div>
+                    <div id="comp-list" class="space-y-2"></div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 pt-2">
+                    <div><span class="doc-label">Última Oración</span><input type="text" class="doc-input"></div>
                 </div>
             </div>
         </div>
 
-        <div class="agenda-page-shell" data-export-root>
-            <div class="institucional-header">
-                <div
-                    style="font-size:10pt;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6pt;font-weight:600;">
-                    La Iglesia de Jesucristo de los Santos de los Últimos Días</div>
-                <div class="print-title"
-                    style="font-size:22pt;text-transform:uppercase;letter-spacing:0.04em;margin:12pt 0;font-weight:800;">
-                    Agenda de Coordinación Misional</div>
-                <div
-                    style="display:flex;justify-content:center;gap:30pt;margin-top:15pt;font-size:11pt;font-weight:500;">
-                    <span>Barrio / Rama: _______________________</span>
-                    <span>Fecha: _______________________</span>
-                </div>
-            </div>
 
-            <div class="modal-header no-print" style="background:linear-gradient(135deg,#002F75,#0066FF);">
-                <div class="modal-header-info">
-                    <div class="modal-header-icon">
-                        <i data-lucide="calendar-days" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                        <div class="modal-header-title">Agenda de Coordinación Misional</div>
-                        <div class="modal-header-sub">Reunión Semanal · Barrio / Rama</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-body">
-
-                <div class="agenda-section">
-                    <div class="agenda-section-header" style="border-left-color:#94A3B8;background:#F8FAFC;">
-                        <div class="agenda-section-number" style="background:#94A3B8;">0</div>
-                        <div class="agenda-section-title" style="color:#475569;">Repaso de Compromisos Anteriores</div>
-                    </div>
-                    <div class="agenda-section-body">
-                        <label class="field-label">Seguimiento de asignaciones previas</label>
-                        <textarea class="input-underlined" rows="2" style="resize:none;"></textarea>
-                    </div>
-                </div>
-
-                <div class="agenda-section">
-                    <div class="agenda-section-header">
-                        <div class="agenda-section-number">1</div>
-                        <div class="agenda-section-title">Apertura y Pensamiento Espiritual</div>
-                        <span class="agenda-section-time">2 min</span>
-                    </div>
-                    <div class="agenda-section-body">
-                        <div class="field-group cols-2">
-                            <div>
-                                <label class="field-label">Quien ora</label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                            <div>
-                                <label class="field-label">Fecha y Hora</label>
-                                <input type="datetime-local" class="input-underlined">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="field-label">Pensamiento espiritual (PME o escritura)</label>
-                            <textarea class="input-underlined" rows="2" style="resize:none;"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="agenda-section">
-                    <div class="agenda-section-header">
-                        <div class="agenda-section-number">2</div>
-                        <div class="agenda-section-title">Personas en la Senda de los Convenios</div>
-                        <span class="agenda-section-time">10 min</span>
-                    </div>
-                    <div class="agenda-section-body">
-                        <div style="font-size:11px;color:var(--text-muted);margin-bottom:12px;font-weight:500;">
-                            Amigos (Investigadores), Miembros Nuevos y Miembros que Regresan
-                        </div>
-                        <div id="agenda-amigos-modal"
-                            style="display:flex;flex-direction:column;gap:10px;margin-bottom:10px;"></div>
-                        <button class="btn-add-card no-print" onclick="addAmigoItemModal()">
-                            <i data-lucide="plus" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                            Añadir ficha de seguimiento
-                        </button>
-                    </div>
-                </div>
-
-                <div class="agenda-section">
-                    <div class="agenda-section-header">
-                        <div class="agenda-section-number">3</div>
-                        <div class="agenda-section-title">Planificación de Ordenanzas</div>
-                        <span class="agenda-section-time">3 min</span>
-                    </div>
-                    <div class="agenda-section-body">
-                        <div class="field-group cols-2">
-                            <div>
-                                <label class="field-label">Candidato</label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                            <div>
-                                <label class="field-label">Fecha propuesta</label>
-                                <input type="date" class="input-underlined">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="field-label">Logística (música, discursos, pila, entrevista)</label>
-                            <textarea class="input-underlined" rows="2" style="resize:none;"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="agenda-section">
-                    <div class="agenda-section-header">
-                        <div class="agenda-section-number">4</div>
-                        <div class="agenda-section-title">Amar, Compartir e Invitar</div>
-                        <span class="agenda-section-time">5 min</span>
-                    </div>
-                    <div class="agenda-section-body">
-                        <div style="display:grid;gap:10px;">
-                            <div
-                                style="background:var(--color-50);border-radius:10px;padding:14px;border:1px solid var(--color-100);">
-                                <label class="field-label"
-                                    style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
-                                    <i data-lucide="heart" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                                    JustServe y Actividades
-                                </label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                            <div style="background:#FFFBEB;border-radius:10px;padding:14px;border:1px solid #FDE68A;">
-                                <label class="field-label"
-                                    style="display:flex;align-items:center;gap:6px;margin-bottom:8px;color:#92400E;">
-                                    <i data-lucide="link" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                                    Referencias y Misioneros de Barrio
-                                </label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="agenda-section">
-                    <div class="agenda-section-header">
-                        <div class="agenda-section-number">5</div>
-                        <div class="agenda-section-title">Compromisos y Oración de Cierre</div>
-                        <span class="agenda-section-time">2 min</span>
-                    </div>
-                    <div class="agenda-section-body">
-                        <label class="field-label">Resumen de asignaciones</label>
-                        <textarea class="input-underlined" rows="2" style="resize:none;font-weight:600;"></textarea>
-                        <div style="margin-top:12px;">
-                            <label class="field-label">Quien ora al cierre</label>
-                            <input type="text" class="input-underlined">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </section>
 
     <!-- PÁGINA: AGENDA BAUTISMAL -->
     <section id="page-agenda-bautismo" class="app-view subpage-main agenda-page-view" data-view="agenda-bautismo"
         hidden>
-        <div class="page-header no-print agenda-page-header">
-            <div>
-                <div class="agenda-page-back-row">
-                    <a href="index.html" class="btn-secondary agenda-back-link">
-                        <i data-lucide="arrow-left" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                        Volver al plan misional
-                    </a>
+        <div class="no-print flex justify-between mb-4 mt-6">
+            <a href="index.html" class="btn-base btn-ghost" style="text-decoration:none;">
+                <i data-lucide="chevron-left" class="lucide-icon lucide-icon-sm mr-1" aria-hidden="true"></i> Volver
+            </a>
+            <button onclick="exportCurrentView()" class="btn-base btn-primary">Descargar PDF</button>
+        </div>
+
+        <div id="agenda-bautismo-content" class="glass-card print-container p-6 md:p-10">
+            <div id="agenda-header" class="border-b-2 border-slate-100 pb-4 mb-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                    <div class="flex-1">
+                        <h2 class="text-xl font-black text-blue-900 uppercase leading-tight">Servicio Bautismal</h2>
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Barrio
+                            Milagro • Estaca Milagro</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="text-left md:text-right w-full md:w-auto">
+                            <span class="doc-label">Fecha y Hora</span>
+                            <input type="text" class="doc-input w-full md:w-48 font-bold text-left md:text-right"
+                                placeholder="Ej. 12 de Octubre, 10:00 AM">
+                        </div>
+                    </div>
                 </div>
-                <h1>Agenda Bautismal</h1>
-                <p>Organiza el servicio con una plantilla limpia, editable y lista para generar su PDF final.</p>
-                <div class="page-meta">
-                    <span>
-                        <i data-lucide="droplets" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                        Ordenanza sagrada
-                    </span>
-                    <span>
-                        <i data-lucide="clock-3" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                        Programa del servicio
-                    </span>
-                    <span>
-                        <i data-lucide="file-badge" class="lucide-icon lucide-icon-sm" aria-hidden="true"></i>
-                        Exportable a PDF
-                    </span>
+            </div>
+
+            <div class="space-y-6">
+                <div class="agenda-box">
+                    <span class="doc-label text-blue-800">Candidato(s) al bautismo</span>
+                    <textarea class="doc-input h-10 font-bold text-lg text-slate-800"
+                        placeholder="Nombres..."></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div><span class="doc-label">Preside</span><input type="text" class="doc-input"></div>
+                    <div><span class="doc-label">Dirige</span><input type="text" class="doc-input"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div><span class="doc-label">Himno de Apertura</span><input type="text" class="doc-input"></div>
+                    <div><span class="doc-label">Primera Oración</span><input type="text" class="doc-input"></div>
+                </div>
+
+                <div class="agenda-box">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="doc-label text-blue-800">Mensajes y Testimonios</span>
+                        <button onclick="addPointToAgenda('mensajes-list', 'Mensaje sobre... por...')"
+                            class="no-print text-[7px] font-black bg-white px-2 py-1 rounded shadow-sm">+
+                            AGREGAR</button>
+                    </div>
+                    <div id="mensajes-list" class="space-y-2"></div>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 text-center">
+                    <div
+                        style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-600);margin-bottom:5px;">
+                        Acto Sagrado</div>
+                    <div
+                        style="font-size:16px;font-weight:800;color:var(--color-900);display:flex;align-items:center;justify-content:center;gap:10px;">
+                        <i data-lucide="droplet" class="w-5 h-5 text-blue-600"></i> Ordenanza del Bautismo
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 text-left">
+                        <div><span class="doc-label">Efectúa el bautismo</span><input type="text" class="doc-input">
+                        </div>
+                        <div><span class="doc-label">Testigos</span><input type="text" class="doc-input"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div><span class="doc-label">Himno de Clausura</span><input type="text" class="doc-input"></div>
+                    <div><span class="doc-label">Última Oración</span><input type="text" class="doc-input"></div>
                 </div>
             </div>
         </div>
 
-        <div class="agenda-page-shell" data-export-root>
-            <div class="institucional-header">
-                <div style="font-size:9pt;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4pt;">La Iglesia
-                    de Jesucristo de los Santos de los Últimos Días</div>
-            </div>
 
-            <div class="modal-header no-print" style="background:linear-gradient(135deg,#002F75,#0066FF);">
-                <div class="modal-header-info">
-                    <div class="modal-header-icon">
-                        <i data-lucide="droplet" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                        <div class="modal-header-title">Agenda Bautismal</div>
-                        <div class="modal-header-sub">Ordenanza Sagrada · Barrio / Rama</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-body">
-                <div class="agenda-section">
-                    <div class="agenda-section-header">
-                        <div class="agenda-section-number">1</div>
-                        <div class="agenda-section-title">Información de la Ordenanza</div>
-                    </div>
-                    <div class="agenda-section-body">
-                        <div style="margin-bottom:15px;">
-                            <label class="field-label">Nombre del candidato</label>
-                            <input type="text" class="input-underlined"
-                                style="font-size:18px;font-weight:700;color:var(--color-700);">
-                        </div>
-                        <div class="field-group cols-3">
-                            <div>
-                                <label class="field-label">Barrio / Rama</label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                            <div>
-                                <label class="field-label">Fecha</label>
-                                <input type="date" class="input-underlined">
-                            </div>
-                            <div>
-                                <label class="field-label">Hora</label>
-                                <input type="time" class="input-underlined">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="agenda-section">
-                    <div class="agenda-section-header">
-                        <div class="agenda-section-number">2</div>
-                        <div class="agenda-section-title">Apertura del Servicio</div>
-                    </div>
-                    <div class="agenda-section-body">
-                        <div class="field-group cols-2">
-                            <div>
-                                <label class="field-label">Dirige</label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                            <div>
-                                <label class="field-label">Himno inicial</label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                        </div>
-                        <div class="field-group cols-2" style="margin-top:12px;">
-                            <div>
-                                <label class="field-label">Primera oración</label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                            <div>
-                                <label class="field-label">Música (pianista / director)</label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="agenda-section" style="border-left-color:#0066FF;">
-                    <div class="agenda-section-header" style="background:var(--color-50);">
-                        <div class="agenda-section-number">3</div>
-                        <div class="agenda-section-title">Enseñanza y Ordenanza</div>
-                    </div>
-                    <div class="agenda-section-body">
-                        <div>
-                            <label class="field-label">Mensaje sobre el bautismo (discursante)</label>
-                            <input type="text" class="input-underlined">
-                        </div>
-
-                        <div
-                            style="margin:20px 0;padding:15px;background:var(--color-50);border-radius:12px;border:1px dashed var(--color-200);text-align:center;">
-                            <div
-                                style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-600);margin-bottom:5px;">
-                                Acto Sagrado</div>
-                            <div
-                                style="font-size:16px;font-weight:800;color:var(--color-900);display:flex;align-items:center;justify-content:center;gap:10px;">
-                                <i data-lucide="droplet" class="lucide-icon lucide-icon-md" aria-hidden="true"></i>
-                                Ordenanza del Bautismo
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="field-label">Mensaje sobre el Espíritu Santo (discursante)</label>
-                            <input type="text" class="input-underlined">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="agenda-section">
-                    <div class="agenda-section-header">
-                        <div class="agenda-section-number">4</div>
-                        <div class="agenda-section-title">Cierre del Servicio</div>
-                    </div>
-                    <div class="agenda-section-body">
-                        <div class="field-group cols-2">
-                            <div>
-                                <label class="field-label">Himno final</label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                            <div>
-                                <label class="field-label">Última oración</label>
-                                <input type="text" class="input-underlined">
-                            </div>
-                        </div>
-                        <div style="margin-top:12px;">
-                            <label class="field-label">Observaciones y asignaciones</label>
-                            <textarea class="input-underlined" rows="3" style="resize:vertical;"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="agenda-section">
-                    <div class="agenda-section-header" style="border-left-color:#94A3B8;background:#F8FAFC;">
-                        <div class="agenda-section-number" style="background:#94A3B8;">5</div>
-                        <div class="agenda-section-title" style="color:#475569;">Preparación</div>
-                    </div>
-                    <div class="agenda-section-body" style="text-align:center;padding:25px 15px;">
-                        <p style="font-size:14px;color:var(--text-secondary);font-style:italic;line-height:1.7;max-width:520px;margin:0 auto;">
-                            Recordar a los participantes traer ropa blanca, prendas adicionales y toallas.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
     <div id="app-toast" class="app-toast no-print" role="status" aria-live="polite"></div>

@@ -777,7 +777,7 @@ html[data-theme="dark"] .text-rose-700 { color: #fda4af !important; }
     page-break-inside: avoid;
 }
 
-#presupuesto-tool:not(.hidden), #planificador-tool:not(.hidden), #agenda-tool:not(.hidden), #llamamiento-tool:not(.hidden) {
+#presupuesto-tool:not(.hidden), #planificador-tool:not(.hidden), #agenda-tool:not(.hidden), #llamamiento-tool:not(.hidden), #juventud-tool:not(.hidden) {
     animation: moduleEnter .55s cubic-bezier(.2,.8,.2,1) both;
 }
 @keyframes moduleEnter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
@@ -826,6 +826,133 @@ html[data-theme="dark"] .text-rose-700 { color: #fda4af !important; }
 /* ====== PLANIFICADOR JUVENIL ANIMACIONES ====== */
 .animate-spin-slow {
     animation: spin 8s linear infinite;
+}
+
+/* ====== PLAN DE ACTIVIDADES DE LA JUVENTUD ====== */
+.youth-planner-print { border-radius: 24px; }
+.youth-planner-header {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0D1B4C 0%, #123D78 60%, #0077FF 100%);
+}
+.youth-planner-header::after {
+    content: "";
+    position: absolute;
+    right: -42px;
+    bottom: -62px;
+    width: 190px;
+    height: 190px;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 50%;
+    box-shadow: 0 0 0 24px rgba(255,255,255,.04), 0 0 0 48px rgba(255,255,255,.03);
+}
+.youth-planner-header > div { position: relative; z-index: 1; }
+.youth-growth-path {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface-solid);
+}
+.youth-growth-path > div { padding: .72rem .85rem; }
+.youth-growth-path > div + div { border-left: 1px solid var(--border); }
+.youth-growth-path span { display: block; color: #0077FF; font-size: .6rem; font-weight: 900; letter-spacing: .1em; }
+.youth-growth-path strong { display: block; margin-top: .15rem; color: var(--text-primary); font-size: .73rem; font-weight: 900; text-transform: uppercase; }
+.youth-growth-path small { display: block; margin-top: .16rem; color: var(--text-secondary); font-size: .67rem; line-height: 1.35; }
+.youth-plan-focus {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface-soft);
+}
+.youth-scripture-card {
+    padding: 1rem;
+    border: 1px solid rgba(0, 119, 255, .16);
+    border-radius: 14px;
+    background: rgba(255,255,255,.62);
+}
+.youth-scripture-card .doc-input { min-height: 42px; }
+.youth-dimension-picker { display: flex; flex-wrap: wrap; align-items: center; gap: .42rem .7rem; margin-top: .7rem; }
+.youth-dimension-picker > span { color: var(--text-secondary); font-size: .67rem; font-weight: 800; }
+.youth-dimension-picker label { display: inline-flex; align-items: center; gap: .2rem; color: var(--text-primary); font-size: .68rem; font-weight: 700; cursor: pointer; }
+.youth-dimension-picker input { width: .8rem; height: .8rem; accent-color: #0077FF; }
+.youth-activity-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface-solid);
+}
+.youth-activity-table {
+    width: 100%;
+    min-width: 690px;
+    border-collapse: collapse;
+}
+.youth-activity-table th {
+    padding: .8rem .7rem;
+    color: var(--text-secondary);
+    background: var(--surface-soft);
+    font-size: .62rem;
+    font-weight: 900;
+    letter-spacing: .08em;
+    text-align: left;
+    text-transform: uppercase;
+}
+.youth-activity-table td { padding: .55rem .45rem; border-top: 1px solid var(--border); vertical-align: top; }
+.youth-activity-table td:first-child { width: 115px; }
+.youth-activity-table td:nth-child(3) { width: 150px; }
+.youth-activity-table td:nth-child(4) { width: 175px; }
+.youth-activity-table .doc-input { min-height: 40px; padding: .45rem .55rem; font-size: .78rem; }
+.youth-row-delete {
+    display: grid;
+    width: 36px;
+    height: 40px;
+    place-items: center;
+    color: #e11d48;
+    border-radius: 10px;
+}
+.youth-row-delete:hover { background: #fff1f2; }
+.youth-row-delete svg { width: 16px; height: 16px; }
+.youth-plan-panel {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+}
+.youth-plan-panel h3 { color: var(--text-primary); font-size: .72rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
+.youth-plan-panel textarea { width: 100%; resize: vertical; }
+.youth-invite-strip {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    padding: 1rem 1.1rem;
+    color: #075985;
+    border-left: 4px solid #00C9FF;
+    border-radius: 0 14px 14px 0;
+    background: #ecfeff;
+}
+.youth-invite-strip svg { flex: 0 0 auto; margin-top: .1rem; }
+.youth-invite-strip strong, .youth-invite-strip span { display: block; }
+.youth-invite-strip strong { font-size: .78rem; font-weight: 900; }
+.youth-invite-strip span { margin-top: .2rem; font-size: .78rem; line-height: 1.55; }
+html[data-theme="dark"] .youth-scripture-card { background: rgba(7,16,31,.32); }
+html[data-theme="dark"] .youth-invite-strip { color: #bdefff; background: rgba(0,201,255,.1); }
+.pdf-export .youth-planner-header { background: #0D1B4C !important; }
+.pdf-export .youth-planner-header::after { display: none; }
+.pdf-export .youth-plan-focus, .pdf-export .youth-plan-panel, .pdf-export .youth-scripture-card { background: #f1f7fb !important; }
+.pdf-export .youth-activity-table-wrap { overflow: visible; }
+.pdf-export .youth-activity-table { min-width: 0; table-layout: fixed; }
+.pdf-export .youth-activity-table th { font-size: 8px; padding: 6px; }
+.pdf-export .youth-activity-table td { padding: 4px; }
+.pdf-export .youth-activity-table .doc-input { min-height: 30px; height: 30px !important; padding: 3px 5px !important; font-size: 9px !important; line-height: 1.2; }
+.pdf-export .youth-activity-table td:first-child { width: 14%; }
+.pdf-export .youth-activity-table td:nth-child(3) { width: 19%; }
+.pdf-export .youth-activity-table td:nth-child(4) { width: 22%; }
+.pdf-export .youth-invite-strip { background: #ecfeff !important; }
+@media (max-width: 640px) {
+    .youth-growth-path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .youth-growth-path > div:nth-child(3) { border-left: 0; border-top: 1px solid var(--border); }
+    .youth-growth-path > div:nth-child(4) { border-top: 1px solid var(--border); }
 }
 
 /* ====== UNIFICACIÓN: PLAN DE BARRIO MISIONAL ====== */
@@ -892,6 +1019,8 @@ html[data-theme="dark"] .text-rose-700 { color: #fda4af !important; }
         background: linear-gradient(90deg, #002e5d 0%, rgba(0,46,93,.72) 13%, transparent 48%);
     }
     .dashboard-hero-media img {
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -1150,4 +1279,182 @@ html[data-theme="dark"] .text-rose-700 { color: #fda4af !important; }
     .calling-duties p.text-xs{font-size:.82rem!important}
     #main-menu>.pt-4>.flex span:not(.h-px){font-size:.72rem!important}
     @media(max-width:560px){.agenda-menu-button{min-height:86px;font-size:.76rem}.btn-base{font-size:.78rem}}
+}
+
+/* ====== CONSISTENCIA DE CONTROLES · HERRAMIENTAS SUD ======
+   Escala única para todos los módulos en pantalla. La hoja impresa mantiene
+   sus reglas propias en @media print. */
+@media screen {
+    #presupuesto-tool,
+    #planificador-tool,
+    #juventud-tool,
+    #agenda-tool,
+    #llamamiento-tool {
+        width: 100%;
+        max-width: 1080px;
+        margin-inline: auto;
+    }
+
+    .btn-base {
+        min-height: 44px;
+        padding: .65rem 1rem;
+        font-size: 14px !important;
+        font-weight: 800;
+        letter-spacing: .01em;
+    }
+
+    .doc-label {
+        margin-bottom: 6px;
+        color: var(--text-secondary);
+        font-size: 12px !important;
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: .065em;
+    }
+
+    .doc-input {
+        min-height: 44px;
+        border-color: rgba(70, 100, 140, .22);
+        border-radius: 12px;
+        color: var(--text-primary);
+        font-size: 15px !important;
+        line-height: 1.45;
+    }
+
+    textarea.doc-input { min-height: 76px; }
+
+    .doc-input:focus {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 4px rgba(0, 119, 255, .13);
+    }
+
+    .agenda-menu-button {
+        min-height: 96px;
+        padding: 1rem;
+        font-size: 14px !important;
+        letter-spacing: .035em;
+    }
+
+    #agenda-tool .agenda-box,
+    #planificador-tool .bg-slate-50,
+    #budget-print .bg-slate-50,
+    #budget-print .bg-white.border {
+        border-color: var(--border) !important;
+        border-radius: 16px !important;
+    }
+
+    #agenda-tool button.no-print:not(.btn-base),
+    #planificador-tool button.no-print:not(.btn-base) {
+        min-width: 40px;
+        min-height: 40px;
+        padding: .5rem .75rem !important;
+        border: 1px solid rgba(0, 119, 255, .18);
+        border-radius: 10px;
+        background: var(--surface-solid);
+        color: var(--blue);
+        font-size: 12px !important;
+        font-weight: 800;
+        line-height: 1.1;
+    }
+
+    .remove-btn {
+        min-width: 36px;
+        min-height: 36px;
+        padding: 6px;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        opacity: .7;
+    }
+
+    .remove-btn:hover,
+    .remove-btn:focus-visible {
+        opacity: 1;
+        border-color: rgba(239, 68, 68, .20);
+        background: rgba(254, 242, 242, .78);
+    }
+
+    .mobile-table-scroll table {
+        font-size: 13px !important;
+    }
+
+    .mobile-table-scroll th {
+        padding: .7rem .45rem !important;
+        font-size: 12px !important;
+        line-height: 1.35;
+    }
+
+    .mobile-table-scroll .doc-input {
+        min-height: 44px;
+        padding: .5rem .6rem;
+        font-size: 14px !important;
+    }
+
+    #budget-print textarea:not(.doc-input) {
+        min-height: 92px;
+        border-color: var(--border) !important;
+        border-radius: 12px !important;
+        color: var(--text-primary);
+        font-size: 15px !important;
+        line-height: 1.55;
+    }
+
+    #budget-print .text-\[9px\],
+    #budget-print .text-\[10px\] {
+        font-size: 12px !important;
+        line-height: 1.35;
+    }
+
+    #org-combo-box {
+        min-height: 44px;
+        border-color: var(--border) !important;
+        border-radius: 12px !important;
+        background: var(--surface-solid) !important;
+        color: var(--text-primary);
+        font-size: 14px !important;
+    }
+
+    #planificador-tool #org-goals-container .doc-input,
+    #planificador-tool #org-indicators-container input {
+        font-size: 14px !important;
+    }
+
+    #juventud-tool .btn-base { font-size: 13px !important; }
+    #juventud-tool .youth-activity-table .doc-input { font-size: 14px !important; }
+    #juventud-tool .youth-row-delete { min-width: 40px; min-height: 40px; }
+    #juventud-tool .youth-dimension-picker label { font-size: 13px; line-height: 1.4; }
+
+    .calling-pill {
+        min-height: 44px;
+        padding: .6rem .95rem;
+        font-size: 13px !important;
+        font-weight: 750;
+    }
+
+    .calling-item .font-black.text-xs,
+    .calling-duties p.text-xs {
+        font-size: 13px !important;
+        line-height: 1.55;
+    }
+
+    html[data-theme="dark"] .doc-input,
+    html[data-theme="dark"] #org-combo-box,
+    html[data-theme="dark"] #budget-print textarea:not(.doc-input) {
+        border-color: rgba(155, 180, 215, .20) !important;
+        background: rgba(7, 16, 31, .46) !important;
+        color: var(--text-primary) !important;
+    }
+
+    html[data-theme="dark"] #agenda-tool button.no-print:not(.btn-base),
+    html[data-theme="dark"] #planificador-tool button.no-print:not(.btn-base) {
+        background: rgba(21, 38, 62, .78);
+        border-color: rgba(0, 201, 255, .22);
+        color: var(--cyan);
+    }
+
+    @media (max-width: 560px) {
+        .btn-base { font-size: 13px !important; }
+        .agenda-menu-button { min-height: 90px; font-size: 13px !important; }
+        .doc-input { font-size: 16px !important; }
+        .mobile-table-scroll .doc-input { font-size: 14px !important; }
+    }
 }

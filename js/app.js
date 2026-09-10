@@ -59,6 +59,32 @@ function openTool(id) {
     resetPagePosition();
 }
 
+function openYouthActivitiesPlanner() {
+    openTool('juventud-tool');
+    const activityBody = document.getElementById('youth-activity-body');
+    if (activityBody && activityBody.children.length === 0) {
+        addYouthActivityRow({ time: '7:00 p. m.', activity: 'Bienvenida, oración y pensamiento espiritual', leader: '', resources: '' });
+        addYouthActivityRow({ time: '7:10 p. m.', activity: 'Actividad principal con propósito', leader: '', resources: '' });
+        addYouthActivityRow({ time: '7:50 p. m.', activity: 'Reflexión, invitación y oración final', leader: '', resources: '' });
+    }
+}
+
+function addYouthActivityRow(values = {}) {
+    const body = document.getElementById('youth-activity-body');
+    if (!body) return;
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td><input type="text" class="doc-input" placeholder="7:00 p. m." value="${values.time || ''}"></td>
+        <td><input type="text" class="doc-input" placeholder="Describe el momento de la actividad" value="${values.activity || ''}"></td>
+        <td><input type="text" class="doc-input" placeholder="Nombre" value="${values.leader || ''}"></td>
+        <td><input type="text" class="doc-input" placeholder="Materiales necesarios" value="${values.resources || ''}"></td>
+        <td class="no-print"><button type="button" onclick="this.closest('tr').remove()" class="youth-row-delete" aria-label="Eliminar momento"><i data-lucide="x"></i></button></td>
+    `;
+    body.appendChild(row);
+    initIcons();
+}
+
 // --- FUNCIONES DE AGENDAS ---
 
 function setupAgenda(title, filename) {
@@ -274,7 +300,7 @@ function calculateBudget(autoUpdateBudgetRecieved = true) {
         const q = parseFloat(row.querySelector('.qty').value) || 0;
         const p = parseFloat(row.querySelector('.price').value) || 0;
         const sub = q * p;
-        row.querySelector('.subtotal').innerText = sub > 0 ? "Q" + sub.toFixed(2) : "";
+        row.querySelector('.subtotal').innerText = sub > 0 ? "Q. " + sub.toFixed(2) : "";
         tableTotal += sub;
     });
     const budgetInput = document.getElementById('budget-received-total-input');
@@ -307,15 +333,19 @@ async function exportToPDF(id, name) {
     const element = document.getElementById(id);
     if (!element || typeof html2canvas === 'undefined' || !window.jspdf?.jsPDF) return;
 
-    // Guardar estado
+    // Guardar estado y neutralizar el tema solamente durante la captura.
+    // Los PDF son documentos impresos: siempre se generan en una paleta clara.
     const originalWidth = element.style.width;
+    const html = document.documentElement;
+    const originalTheme = html.getAttribute('data-theme');
 
-    // Activar modo PDF
+    html.setAttribute('data-theme', 'light');
     element.classList.add('pdf-export');
     // 718 px equivale al ancho útil de una hoja A4 con márgenes de 8 mm.
     element.style.width = '718px';
     try {
         if (document.fonts && document.fonts.ready) await document.fonts.ready;
+        await new Promise(resolve => requestAnimationFrame(resolve));
 
         const canvas = await html2canvas(element, {
             scale: 2,
@@ -361,6 +391,8 @@ async function exportToPDF(id, name) {
     } finally {
         element.classList.remove('pdf-export');
         element.style.width = originalWidth;
+        if (originalTheme === null) html.removeAttribute('data-theme');
+        else html.setAttribute('data-theme', originalTheme);
     }
 }
 // --- DATOS Y FUNCIONES DE LLAMAMIENTOS ---

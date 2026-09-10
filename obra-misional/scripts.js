@@ -735,6 +735,20 @@ function hasMeaningfulState(state) {
     return false;
 }
 
+function addPointToAgenda(listId, placeholder = "Detalle...") {
+    const list = document.getElementById(listId);
+    if (!list) return;
+    const div = document.createElement('div');
+    div.className = "flex gap-2 group items-center mb-1";
+    div.innerHTML = `<i data-lucide="circle" class="w-2 h-2 text-slate-300"></i><input type="text" class="doc-input flex-1" placeholder="${placeholder}"><button onclick="this.closest('.group').remove()" class="no-print remove-btn text-red-300"><i data-lucide="x" class="w-3 h-3"></i></button>`;
+    list.appendChild(div);
+    renderLucideIcons();
+    
+    // Asignar llave de persistencia y disparar guardado
+    assignPersistenceKeys();
+    scheduleAutoSave();
+}
+
 function refreshComputedUi() {
     updateProgress('bautismos', 18);
     updateProgress('lecciones', 12);
@@ -1105,13 +1119,13 @@ async function generatePDF(elementId, fileName) {
     iframe.contentDocument.open();
     iframe.contentDocument.write(`
         <!DOCTYPE html>
-        <html lang="es">
+        <html lang="es" data-theme="light">
         <head>
             ${headContent}
             <title>${fileName}.pdf</title>
             <style>
                 @page { size: A4; margin: 0; }
-                html, body { margin: 0 !important; padding: 0 !important; }
+                html, body { margin: 0 !important; padding: 0 !important; color-scheme: light !important; }
                 * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
                 body { background: white !important; color: black !important; font-family: Inter, Arial, sans-serif !important; line-height: 1.4; width: 210mm; min-height: 297mm; position: relative !important; }
                 .print-container { position: relative; z-index: 2; padding: 0; width: 100%; box-sizing: border-box; }
@@ -1416,6 +1430,28 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     await restorePlanData();
     ensureAgendaAmigosStarterCard();
+    
+    // Inicializar listas dinámicas de agendas con un campo vacío si están vacías
+    // (se ejecuta después de restorePlanData para no sobreescribir datos guardados)
+    const agendaLists = {
+        'asist-list': 'Nombre...',
+        'repaso-list': 'Compromiso...',
+        'ord-list': 'Candidato y fecha...',
+        'amar-list': 'Acción...',
+        'comp-list': 'Asignación...'
+    };
+    Object.entries(agendaLists).forEach(([id, placeholder]) => {
+        const list = document.getElementById(id);
+        if (list && list.children.length === 0) {
+            addPointToAgenda(id, placeholder);
+        }
+    });
+    
+    const mensajesList = document.getElementById('mensajes-list');
+    if (mensajesList && mensajesList.children.length === 0) {
+        addPointToAgenda('mensajes-list', 'Mensaje sobre el bautismo (Discursante)');
+        addPointToAgenda('mensajes-list', 'Mensaje sobre el Espíritu Santo (Discursante)');
+    }
 });
 
 window.addEventListener('pageshow', () => {

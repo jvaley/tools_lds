@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css?v=20260806g">
+    <link rel="stylesheet" href="css/styles.css?v=20260902a">
 </head>
 
 <body class="pb-20">
@@ -41,17 +41,18 @@
         <div id="main-menu" class="space-y-6">
             <header class="dashboard-hero mb-10">
                 <div class="dashboard-hero-copy">
-                    <span class="dashboard-hero-eyebrow"><i data-lucide="sparkles"></i> Espacio de servicio</span>
-                    <h1 class="text-3xl font-black tracking-tighter uppercase">Todo lo que necesitas para servir mejor.</h1>
+                    <span class="dashboard-hero-eyebrow"><i data-lucide="sparkles"></i>BARRIO MILAGRO</span>
+                    <h1 class="text-3xl font-black tracking-tighter uppercase">Todo lo que necesitas para servir mejor.
+                    </h1>
                     <p>Organiza recursos, reuniones y planes del barrio desde un solo lugar.</p>
                     <div class="dashboard-hero-summary" aria-label="Contenido disponible">
-                        <span><strong>4</strong> herramientas</span>
+                        <span><strong>5</strong> herramientas</span>
                         <span><strong>5</strong> agendas</span>
                         <span><i data-lucide="file-check-2"></i> PDFs listos</span>
                     </div>
                 </div>
                 <div class="dashboard-hero-media" aria-hidden="true">
-                    <img src="assets/images/community-planning-hero.png" alt="" fetchpriority="high">
+                    <img src="assets/images/barrio-templo-hero.jpeg" alt="" fetchpriority="high">
                     <div class="dashboard-hero-note">
                         <span class="dashboard-hero-note-icon"><i data-lucide="heart-handshake"></i></span>
                         <span><small>Un propósito compartido</small><strong>Planificar · Servir · Crecer</strong></span>
@@ -60,7 +61,8 @@
             </header>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div onclick="openTool('presupuesto-tool')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTool('presupuesto-tool')}"
+                <div onclick="openTool('presupuesto-tool')"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTool('presupuesto-tool')}"
                     role="button" tabindex="0"
                     class="glass-card p-6 cursor-pointer hover:border-emerald-400 transition-all">
                     <div
@@ -72,7 +74,8 @@
                         actividad.</p>
                 </div>
 
-                <div onclick="openTool('planificador-tool')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTool('planificador-tool')}"
+                <div onclick="openTool('planificador-tool')"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openTool('planificador-tool')}"
                     role="button" tabindex="0"
                     class="glass-card p-6 cursor-pointer hover:border-emerald-400 transition-all">
                     <div
@@ -83,7 +86,8 @@
                     <p class="text-xs text-slate-500 leading-relaxed">Metas e indicadores por organización.</p>
                 </div>
 
-                <div onclick="openCallings()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCallings()}"
+                <div onclick="openCallings()"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCallings()}"
                     role="button" tabindex="0"
                     class="glass-card p-6 cursor-pointer hover:border-blue-400 transition-all">
                     <div class="w-12 h-12 bg-blue-50 text-blue-700 rounded-2xl flex items-center justify-center mb-4">
@@ -100,8 +104,21 @@
                         <i data-lucide="send"></i>
                     </div>
                     <h3 class="font-black uppercase text-sm mb-1">Obra Misional</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Plan misional, metas, coordinación y matriz de acciones.</p>
+                    <p class="text-xs text-slate-500 leading-relaxed">Plan misional, metas, coordinación y matriz de
+                        acciones.</p>
                 </a>
+
+                <div onclick="openYouthActivitiesPlanner()"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openYouthActivitiesPlanner()}"
+                    role="button" tabindex="0"
+                    class="glass-card p-6 cursor-pointer hover:border-cyan-400 transition-all">
+                    <div class="w-12 h-12 bg-cyan-50 text-cyan-700 rounded-2xl flex items-center justify-center mb-4">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <h3 class="font-black uppercase text-sm mb-1">Juventud del Barrio</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Planifica las reuniones de actividades de jóvenes
+                        —antes Mutual— con propósito y seguimiento.</p>
+                </div>
             </div>
 
             <div class="pt-4">
@@ -184,7 +201,7 @@
                             <span class="doc-label text-blue-800 mb-0 text-[10px] uppercase font-black">Costo
                                 p/Persona</span>
                             <div class="font-black text-blue-900 text-lg">
-                                Q <span id="cost-per-person">0.00</span>
+                                Q. <span id="cost-per-person">0.00</span>
                             </div>
                         </div>
                     </div>
@@ -195,9 +212,9 @@
                             <thead>
                                 <tr class="text-left text-slate-400 uppercase font-black border-b border-slate-200">
                                     <th class="pb-2">Concepto / Referencia Recibo</th>
-                                    <th class="pb-2 text-right w-16">Cant.</th>
-                                    <th class="pb-2 text-right w-24">Unitario</th>
-                                    <th class="pb-2 text-right w-24">Subtotal</th>
+                                    <th class="pb-2 text-right w-16">Cantidad</th>
+                                    <th class="pb-2 text-right w-24">Valor unitario (Q.)</th>
+                                    <th class="pb-2 text-right w-24">Subtotal (Q.)</th>
                                     <th class="pb-2 w-8 no-print"></th>
                                 </tr>
                             </thead>
@@ -221,7 +238,7 @@
                                 <div class="flex justify-between items-center">
                                     <span class="text-[9px] font-black uppercase text-slate-500">Monto Recibido</span>
                                     <div class="flex items-center space-x-1 font-black text-slate-800">
-                                        <span>Q</span>
+                                        <span>Q.</span>
                                         <input type="number" id="budget-received-total-input"
                                             class="w-24 doc-input text-right font-black p-1"
                                             oninput="calculateBudget(false)">
@@ -230,7 +247,7 @@
                                 <div class="flex justify-between items-center">
                                     <span class="text-[9px] font-black uppercase text-blue-700">Gasto Ejecutado</span>
                                     <div class="flex items-center space-x-1 font-black text-blue-900">
-                                        <span>Q</span>
+                                        <span>Q.</span>
                                         <input type="number" id="actual-spent-input"
                                             class="w-24 doc-input text-right font-black p-1"
                                             oninput="calculateBudget(true)">
@@ -240,7 +257,7 @@
                                 <div class="flex justify-between items-center">
                                     <span class="text-[9px] font-black uppercase text-emerald-600">Sobrante</span>
                                     <div class="flex items-center space-x-1 font-black text-emerald-600">
-                                        <span>Q</span>
+                                        <span>Q.</span>
                                         <input type="number" id="total-surplus-input"
                                             class="w-24 doc-input text-right font-black p-1" readonly>
                                     </div>
@@ -314,6 +331,134 @@
                             Calendario Maestro de Actividades</h3>
                         <div id="org-calendar-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MÓDULO: PLANIFICADOR DE ACTIVIDADES DE LA JUVENTUD -->
+        <div id="juventud-tool" class="hidden">
+            <div class="no-print flex justify-between items-center mb-4 gap-3">
+                <button onclick="showMenu()" class="btn-base btn-ghost shrink-0"><i data-lucide="chevron-left"
+                        class="w-4 h-4 mr-1"></i> Volver</button>
+                <button onclick="exportToPDF('youth-print-area', 'Plan_Actividades_Juventud')"
+                    class="btn-base btn-primary"><i data-lucide="download" class="w-4 h-4 mr-2"></i> PDF</button>
+            </div>
+
+            <div id="youth-print-area" class="glass-card print-container overflow-hidden youth-planner-print">
+                <header class="youth-planner-header p-6 md:p-8 text-white">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center shrink-0">
+                                <i data-lucide="sparkles" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-black uppercase tracking-[.18em] text-cyan-100">Barrio ·
+                                    Juventud</p>
+                                <h2 class="text-xl md:text-2xl font-black uppercase tracking-tight">Plan de actividades
+                                </h2>
+                                <p class="text-xs text-white/70 mt-1">Reunión semanal de actividades de jóvenes <span
+                                        class="text-white/45">· antes Mutual</span></p>
+                            </div>
+                        </div>
+                        <div
+                            class="hidden sm:block text-right text-[9px] font-bold uppercase tracking-widest text-white/65">
+                            Servir · Aprender · Crecer</div>
+                    </div>
+                </header>
+
+                <div class="p-5 md:p-8 space-y-6">
+                    <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div><span class="doc-label">Fecha</span><input type="date" class="doc-input"></div>
+                        <div><span class="doc-label">Hora y lugar</span><input type="text" class="doc-input"
+                                placeholder="Ej. Miércoles · 7:00 p. m. · Capilla"></div>
+                        <div><span class="doc-label">Dirigen</span><input type="text" class="doc-input"
+                                placeholder="Presidencia juvenil y asesor(a)"></div>
+                    </section>
+
+                    <section class="youth-growth-path" aria-label="Modelo de crecimiento">
+                        <div><span>01</span><strong>Descubre</strong><small>Necesidades, dones y talentos.</small></div>
+                        <div><span>02</span><strong>Planifica</strong><small>Una meta y acciones claras.</small></div>
+                        <div><span>03</span><strong>Actúa</strong><small>Participa y ponlo en práctica.</small></div>
+                        <div><span>04</span><strong>Reflexiona</strong><small>Reconoce el progreso y el siguiente
+                                paso.</small></div>
+                    </section>
+
+                    <section class="youth-plan-focus grid grid-cols-1 md:grid-cols-[1.25fr_.75fr] gap-4">
+                        <div>
+                            <span class="doc-label text-cyan-800">Descubre · propósito de crecimiento</span>
+                            <textarea class="doc-input min-h-[76px]"
+                                placeholder="¿Qué necesidad, don o talento del grupo queremos fortalecer? ¿Cómo ayudará a los jóvenes a acercarse a Jesucristo?"></textarea>
+                            <div class="youth-dimension-picker" role="group" aria-label="Áreas de crecimiento">
+                                <span>Área principal</span>
+                                <label><input type="radio" name="youth-growth-area" value="espiritual">
+                                    Espiritual</label>
+                                <label><input type="radio" name="youth-growth-area" value="social"> Social</label>
+                                <label><input type="radio" name="youth-growth-area" value="físico"> Físico</label>
+                                <label><input type="radio" name="youth-growth-area" value="intelectual">
+                                    Intelectual</label>
+                            </div>
+                        </div>
+                        <div class="youth-scripture-card">
+                            <i data-lucide="book-open-check" class="w-5 h-5 text-cyan-700 mb-3"></i>
+                            <span class="doc-label">Planifica · meta y apoyo espiritual</span>
+                            <input type="text" class="doc-input mb-2" placeholder="Meta breve de la actividad">
+                            <input type="text" class="doc-input" placeholder="Escritura, himno o mensaje">
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="flex items-end justify-between gap-4 mb-3">
+                            <div>
+                                <h3 class="text-[11px] font-black uppercase tracking-wide text-slate-700">Actúa · ruta
+                                    de la reunión</h3>
+                                <p class="text-xs text-slate-500 mt-1">Define experiencias participativas y quién
+                                    acompaña cada momento.</p>
+                            </div>
+                            <button onclick="addYouthActivityRow()"
+                                class="no-print btn-base btn-ghost text-[10px] px-3"><i data-lucide="plus"
+                                    class="w-3.5 h-3.5 mr-1"></i> Añadir momento</button>
+                        </div>
+                        <div class="youth-activity-table-wrap">
+                            <table class="youth-activity-table">
+                                <thead>
+                                    <tr>
+                                        <th>Hora</th>
+                                        <th>Actividad o dinámica</th>
+                                        <th>Responsable</th>
+                                        <th>Materiales / recursos</th>
+                                        <th class="no-print"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="youth-activity-body"></tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="youth-plan-panel">
+                            <div class="flex items-center gap-2 mb-3"><i data-lucide="shield-check"
+                                    class="w-4 h-4 text-cyan-700"></i>
+                                <h3>Seguridad y logística</h3>
+                            </div>
+                            <textarea class="doc-input min-h-[94px]"
+                                placeholder="Transporte, permisos, alergias, acompañamiento adulto, presupuesto u otros detalles."></textarea>
+                        </div>
+                        <div class="youth-plan-panel">
+                            <div class="flex items-center gap-2 mb-3"><i data-lucide="heart-handshake"
+                                    class="w-4 h-4 text-cyan-700"></i>
+                                <h3>Reflexiona y da seguimiento</h3>
+                            </div>
+                            <textarea class="doc-input min-h-[94px]"
+                                placeholder="¿Qué aprendimos? ¿Qué salió bien? ¿A quién invitaremos o acompañaremos en el siguiente paso?"></textarea>
+                        </div>
+                    </section>
+
+                    <section class="youth-invite-strip">
+                        <i data-lucide="users-round" class="w-5 h-5"></i>
+                        <div><strong>Invitación inclusiva</strong><span>Piensen juntos cómo invitar y acompañar a cada
+                                joven, especialmente a quienes no han participado recientemente.</span></div>
+                    </section>
                 </div>
             </div>
         </div>
