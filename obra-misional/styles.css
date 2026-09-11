@@ -241,6 +241,63 @@ html[data-theme="dark"] .agenda-box {
     @media(max-width:700px){.nav-save,.nav-export{font-size:0!important}.agenda-card-title{font-size:15px}}
 }
 
+/* Cierre visual continuo del tablero: evita que las sombras de las secciones
+   terminen sobre una franja oscura al final de la vista. */
+@media screen {
+    html {
+        min-height: 100%;
+        background: #EDF3FA;
+    }
+
+    html[data-theme="dark"] {
+        background: #07101F;
+    }
+
+    body {
+        min-height: 100vh;
+        background-color: #EDF3FA !important;
+    }
+
+    html[data-theme="dark"] body {
+        background-color: #07101F !important;
+    }
+
+    main#main-plan-content {
+        min-height: 100vh;
+        padding-bottom: clamp(64px, 8vw, 112px) !important;
+        isolation: isolate;
+    }
+
+    #section-liderazgo > .card,
+    #section-agendas > .card,
+    #section-matriz > .card {
+        border-color: rgba(70, 100, 140, .18) !important;
+        box-shadow:
+            0 18px 34px -24px rgba(15, 23, 42, .18),
+            0 8px 18px -14px rgba(25, 60, 105, .12),
+            0 0 0 1px rgba(255, 255, 255, .54) inset !important;
+    }
+
+    #section-liderazgo > .card:hover,
+    #section-agendas > .card:hover,
+    #section-matriz > .card:hover {
+        box-shadow:
+            0 24px 42px -22px rgba(15, 23, 42, .20),
+            0 12px 22px -14px rgba(25, 60, 105, .14),
+            0 0 0 1px rgba(255, 255, 255, .58) inset !important;
+    }
+
+    html[data-theme="dark"] #section-liderazgo > .card,
+    html[data-theme="dark"] #section-agendas > .card,
+    html[data-theme="dark"] #section-matriz > .card {
+        border-color: rgba(155, 180, 215, .16) !important;
+        box-shadow:
+            0 22px 42px -24px rgba(0, 0, 0, .46),
+            0 10px 20px -14px rgba(2, 6, 23, .34),
+            0 0 0 1px rgba(155, 180, 215, .08) inset !important;
+    }
+}
+
 /* ====== CONTROLES UNIFICADOS · AJUSTE FINAL DE CASCADA ====== */
 @media screen {
     .btn-primary,
@@ -3443,7 +3500,7 @@ main#main-plan-content,
     #section-agendas,
     #section-matriz,
     .agenda-page-shell {
-        content-visibility: auto;
+      /*  content-visibility: auto;*/
         contain-intrinsic-size: 720px;
     }
 
@@ -4111,4 +4168,85 @@ main#main-plan-content,
     .actions-table textarea,.actions-table input,.input-underlined{font-size:14px!important}
     .btn-delete-row{min-width:38px;min-height:38px}
     @media(max-width:700px){.nav-save,.nav-export{font-size:0!important}.agenda-card-title{font-size:15px}}
+}
+
+/* Cierre visual continuo: el lienzo no debe cortar las sombras con negro.
+   Las tarjetas principales replican el borde y la sombra sutil de las etiquetas del héroe. */
+@media screen {
+    html { min-height: 100%; background: #EDF3FA; }
+    html[data-theme="dark"] { background: #07101F; }
+
+    body { min-height: 100vh; background-color: #EDF3FA !important; }
+    html[data-theme="dark"] body { background-color: #07101F !important; }
+
+    main#main-plan-content {
+        min-height: 100vh;
+        padding-bottom: clamp(64px, 8vw, 112px) !important;
+        isolation: isolate;
+    }
+
+    #section-liderazgo > .card,
+    #section-agendas > .card,
+    #section-matriz > .card {
+        border: 1px solid rgba(70, 100, 140, .16) !important;
+        box-shadow:
+            0 2px 8px rgba(25, 60, 105, .06),
+            inset 0 1px 0 rgba(255, 255, 255, .64) !important;
+    }
+
+    #section-liderazgo > .card:hover,
+    #section-agendas > .card:hover,
+    #section-matriz > .card:hover {
+        box-shadow:
+            0 6px 16px rgba(25, 60, 105, .10),
+            inset 0 1px 0 rgba(255, 255, 255, .68) !important;
+    }
+
+    html[data-theme="dark"] #section-liderazgo > .card,
+    html[data-theme="dark"] #section-agendas > .card,
+    html[data-theme="dark"] #section-matriz > .card {
+        border-color: rgba(155, 180, 215, .16) !important;
+        box-shadow:
+            0 2px 10px rgba(0, 0, 0, .16),
+            inset 0 1px 0 rgba(155, 180, 215, .06) !important;
+    }
+}
+
+/* Liderazgo de la Obra: misma construcción de superficie que Herramientas SUD. */
+@media screen {
+    #section-liderazgo > .card {
+        border: 1px solid var(--border) !important;
+        border-radius: 28px !important;
+        overflow: hidden !important;
+        background-clip: padding-box;
+        box-shadow:
+            var(--shadow-soft),
+            inset 0 1px 0 rgba(255, 255, 255, .72) !important;
+        backdrop-filter: blur(24px) saturate(145%);
+        -webkit-backdrop-filter: blur(24px) saturate(145%);
+    }
+
+    #section-liderazgo > .card::before,
+    #section-liderazgo > .card::after {
+        border-radius: inherit;
+    }
+
+    #section-liderazgo > .card:hover,  
+        #section-agendas > .card,
+        #section-matriz > .card:hover {
+        border-color: rgba(0, 119, 255, .28) !important;
+        box-shadow: 0 32px 80px rgba(25, 60, 105, .22) !important;
+    }
+
+    html[data-theme="dark"] #section-liderazgo > .card {
+        border-color: rgba(155, 180, 215, .16) !important;
+        box-shadow:
+            var(--shadow-soft),
+            inset 0 1px 0 rgba(155, 180, 215, .08) !important;
+    }
+
+    html[data-theme="dark"] #section-liderazgo > .card:hover {
+        border-color: rgba(0, 201, 255, .28) !important;
+        box-shadow: 0 32px 80px rgba(0, 0, 0, .42) !important;
+    }
 }
